@@ -1,8 +1,8 @@
 #ifndef ITERABLE_LIST_H
 #define ITERABLE_LIST_H
 
-#include "forward_iterator.h"
-#include "iterable.h"
+#include "iterator/forward_iterator.h"
+#include "iterator/iterable.h"
 
 template <typename ValueType, typename IteratorType>
 struct IterableList : Iterable<ValueType, IteratorType> {

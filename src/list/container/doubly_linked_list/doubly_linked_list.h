@@ -2,10 +2,10 @@
 #define DOUBLY_LINKED_LIST_H
 
 #include "container/container.h"
-#include "lists/auxiliary/iterators/iterable_list.h"
-#include "lists/auxiliary/nodes/bidirectional_node.h"
+#include "list/iterable_list.h"
+#include "list/node/bidirectional_node.h"
 #include "doubly_linked_list_iterator.h"
-#include "lists/auxiliary/iterators/reverse_iterable.h"
+#include "iterator/reverse_iterable.h"
 #include "doubly_linked_list_reverse_iterator.h"
 #include <memory>
 

@@ -23,29 +23,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    lists/auxiliary/nodes/bidirectional_node.tpp \
-    lists/auxiliary/nodes/forward_node.tpp \
-    lists/doubly_linked_list/doubly_linked_list.tpp \
+    list/node/bidirectional_node.tpp \
+    list/node/forward_node.tpp \
+    list/container/doubly_linked_list/doubly_linked_list.tpp \
     container/container.tpp\
-    lists/doubly_linked_list/doubly_linked_list_iterator.tpp\
-    lists/doubly_linked_list/doubly_linked_list_reverse_iterator.tpp\
-    lists/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp
+    list/container/doubly_linked_list/doubly_linked_list_iterator.tpp\
+    list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.tpp\
+    list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp
 
 HEADERS += \
-    lists/auxiliary/iterators/iterable_list.h \
-    lists/auxiliary/nodes/bidirectional_node.h \
-    lists/auxiliary/nodes/forward_node.h \
-    lists/auxiliary/nodes/node.h \
+    list/iterable_list.h \
+    list/node/bidirectional_node.h \
+    list/node/forward_node.h \
+    list/node/node.h \
     container/container.h \
-    lists/doubly_linked_list/doubly_linked_list.h \
-    lists/auxiliary/iterators/forward_iterator.h \
-    lists/auxiliary/iterators/bidirectional_iterator.h \
-    lists/auxiliary/iterators/random_access_iterator.h \
-    lists/auxiliary/iterators/iterable.h \
-    lists/doubly_linked_list/doubly_linked_list_iterator.h \
-    lists/auxiliary/iterators/reverse_iterable.h \
-    lists/doubly_linked_list/doubly_linked_list_abstract_iterator.h \
-    lists/doubly_linked_list/doubly_linked_list_reverse_iterator.h
+    list/container/doubly_linked_list/doubly_linked_list.h \
+    iterator/forward_iterator.h \
+    iterator/bidirectional_iterator.h \
+    iterator/random_access_iterator.h \
+    iterator/iterable.h \
+    list/container/doubly_linked_list/doubly_linked_list_iterator.h \
+    iterator/reverse_iterable.h \
+    list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.h \
+    list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.h
 
 unix {
     target.path = /usr/lib
