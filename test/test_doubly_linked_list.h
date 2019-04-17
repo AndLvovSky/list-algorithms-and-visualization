@@ -19,6 +19,12 @@ private slots:
 
     void test_reverse_iterator();
 
+    void test_insert();
+
+    void test_erase();
+
+    void test_additional_methods();
+
 };
 
 #endif // TEST_DOUBLY_LINKED_LIST_H

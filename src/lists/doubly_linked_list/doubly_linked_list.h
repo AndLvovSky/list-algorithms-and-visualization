@@ -51,13 +51,13 @@ public:
 
     void push_back(const T& value);
 
-    T front() const;
+    T& front() const;
 
-    T back() const;
+    T& back() const;
 
-    T pop_front();
+    void pop_front();
 
-    T pop_back();
+    void pop_back();
 
 };
 

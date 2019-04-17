@@ -34,21 +34,21 @@ DoublyLinkedList<T>::rend() const {
 template <typename T>
 typename DoublyLinkedList<T>::iterator
 DoublyLinkedList<T>::find(const T& value) const {
-    for (auto it = this->begin(); it != this->end(); ++it) {
+    for (auto it = begin(); it != end(); ++it) {
         if (*it == value) {
             return it;
         }
     }
-    return this->end();
+    return end();
 }
 
 template <typename T>
 void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
-    if (it == this->begin()) {
+    if (it == begin()) {
         push_front(value);
         return;
     }
-    if (it == this->end()) {
+    if (it == end()) {
         push_back(value);
         return;
     }
@@ -56,11 +56,23 @@ void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
     auto new_node = make_shared<Node>(value, node->prev, node);
     node->prev->next = new_node;
     node->prev = new_node;
+    inc_size();
 }
 
 template <typename T>
 void DoublyLinkedList<T>::erase(const iterator& it) {
-    //...
+    if (it == begin()) {
+        pop_front();
+        return;
+    }
+    if (it == end()) {
+        pop_back();
+        return;
+    }
+    auto node = it.current;
+    node->prev->next = node->next;
+    node->next->prev = node->prev;
+    dec_size();
 }
 
 template <typename T>
@@ -88,23 +100,29 @@ void DoublyLinkedList<T>::push_back(const T& value) {
 }
 
 template <typename T>
-T DoublyLinkedList<T>::front() const {
-    //...
+T& DoublyLinkedList<T>::front() const {
+    return head->value();
 }
 
 template <typename T>
-T DoublyLinkedList<T>::back() const {
-    //...
+T& DoublyLinkedList<T>::back() const {
+    return tail->value();
 }
 
 template <typename T>
-T DoublyLinkedList<T>::pop_front() {
-    //...
+void DoublyLinkedList<T>::pop_front() {
+    if (is_empty()) return;
+    head = head->next;
+    head->prev = nullptr;
+    dec_size();
 }
 
 template <typename T>
-T DoublyLinkedList<T>::pop_back() {
-    //...
+void DoublyLinkedList<T>::pop_back() {
+    if (is_empty()) return;
+    tail = tail->prev;
+    tail->next = nullptr;
+    dec_size();
 }
 
 template class  DoublyLinkedList<int>;
