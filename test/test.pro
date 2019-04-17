@@ -9,8 +9,8 @@ TEMPLATE = app
 INCLUDEPATH += $$PWD/../src
 
 SOURCES += \   
-    test_linked_list.cpp \
-    main_test.cpp
+    main_test.cpp \
+    test_doubly_linked_list.cpp
 
 HEADERS += \
-    test_linked_list.h
+    test_doubly_linked_list.h

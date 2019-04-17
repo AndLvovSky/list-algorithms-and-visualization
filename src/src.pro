@@ -23,13 +23,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        list_algorithms.cpp
+    lists/auxiliary/nodes/bidirectional_node.tpp \
+    lists/auxiliary/nodes/forward_node.tpp \
+    lists/doubly_linked_list/doubly_linked_list.tpp \
+    container/container.tpp\
+    lists/doubly_linked_list/doubly_linked_list_iterator.tpp\
+    lists/doubly_linked_list/doubly_linked_list_reverse_iterator.tpp\
+    lists/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp
 
 HEADERS += \
-        list_algorithms.h \
-        src_global.h 
+    lists/auxiliary/iterators/iterable_list.h \
+    lists/auxiliary/nodes/bidirectional_node.h \
+    lists/auxiliary/nodes/forward_node.h \
+    lists/auxiliary/nodes/node.h \
+    container/container.h \
+    lists/doubly_linked_list/doubly_linked_list.h \
+    lists/auxiliary/iterators/forward_iterator.h \
+    lists/auxiliary/iterators/bidirectional_iterator.h \
+    lists/auxiliary/iterators/random_access_iterator.h \
+    lists/auxiliary/iterators/iterable.h \
+    lists/doubly_linked_list/doubly_linked_list_iterator.h \
+    lists/auxiliary/iterators/reverse_iterable.h \
+    lists/doubly_linked_list/doubly_linked_list_abstract_iterator.h \
+    lists/doubly_linked_list/doubly_linked_list_reverse_iterator.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+SUBDIRS += \
+    src.pro

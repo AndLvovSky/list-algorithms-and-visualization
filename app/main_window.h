@@ -2,7 +2,7 @@
 #define MAIN_WINDOW_H
 
 #include <QMainWindow>
-#include <list_algorithms.h>
+#include <list_algorithms/list_algorithms.h>
 
 namespace Ui {
 class MainWindow;
