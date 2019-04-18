@@ -29,7 +29,9 @@ SOURCES += \
     container/container.tpp\
     list/container/doubly_linked_list/doubly_linked_list_iterator.tpp\
     list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.tpp\
-    list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp
+    list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp\
+    list/container/array_list/array_list_iterator.tpp\
+    list/container/array_list/array_list.tpp
 
 HEADERS += \
     list/iterable_list.h \
@@ -40,12 +42,18 @@ HEADERS += \
     list/container/doubly_linked_list/doubly_linked_list.h \
     iterator/forward_iterator.h \
     iterator/bidirectional_iterator.h \
-    iterator/random_access_iterator.h \
     iterator/iterable.h \
     list/container/doubly_linked_list/doubly_linked_list_iterator.h \
     iterator/reverse_iterable.h \
     list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.h \
-    list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.h
+    list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.h\
+    list/access/back_pushable.h\
+    list/access/front_pushable.h \
+    list/access/back_popable.h \
+    list/access/front_popable.h\
+    list/container/array_list/array_list_iterator.h \
+    list/container/array_list/array_list.h \
+    list/access/random_accessible.h
 
 unix {
     target.path = /usr/lib

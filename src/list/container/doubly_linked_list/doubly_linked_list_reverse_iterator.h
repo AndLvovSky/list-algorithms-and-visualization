@@ -12,6 +12,10 @@ private:
 
     typedef DoublyLinkedListAbstractIterator<T> Parent;
 
+    template <typename> friend class DoublyLinkedList;
+
+    using Parent::current;
+
 public:
 
     DoublyLinkedListReverseIterator(NodePtr current);

@@ -6,13 +6,13 @@ DoublyLinkedListIterator<T>::DoublyLinkedListIterator(NodePtr current)
 
 template <typename T>
 DoublyLinkedListIterator<T>& DoublyLinkedListIterator<T>::operator ++ () {
-    Parent::current = Parent::current->next;
+    current = current->next;
     return *this;
 }
 
 
 template <typename T>
 DoublyLinkedListIterator<T>& DoublyLinkedListIterator<T>::operator -- () {
-    Parent::current = Parent::current->prev;
+    current = current->prev;
     return *this;
 }

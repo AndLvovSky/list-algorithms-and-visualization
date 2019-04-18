@@ -8,7 +8,7 @@ DoublyLinkedListReverseIterator(NodePtr current)
 template <typename T>
 DoublyLinkedListReverseIterator<T>&
 DoublyLinkedListReverseIterator<T>::operator ++ () {
-    Parent::current = Parent::current->prev;
+    current = current->prev;
     return *this;
 }
 
@@ -16,6 +16,6 @@ DoublyLinkedListReverseIterator<T>::operator ++ () {
 template <typename T>
 DoublyLinkedListReverseIterator<T>&
 DoublyLinkedListReverseIterator<T>::operator -- () {
-    Parent::current = Parent::current->next;
+    current = current->next;
     return *this;
 }

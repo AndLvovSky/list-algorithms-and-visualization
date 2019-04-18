@@ -10,8 +10,6 @@ class DoublyLinkedListAbstractIterator : public BidirectionalIterator<T> {
 
 protected:
 
-    template <typename> friend class DoublyLinkedList;
-
     typedef std::shared_ptr<BidirectionalNode<T>> NodePtr;
 
     NodePtr current;

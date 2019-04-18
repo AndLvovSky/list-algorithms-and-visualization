@@ -8,7 +8,7 @@ template <typename ValueType, typename IteratorType>
 struct Iterable {
 
     static_assert(std::is_base_of<ForwardIterator<ValueType>, IteratorType>::value,
-        "IteratorType must be inhererited from ForwardIterator!");
+        "IteratorType must be inherited from ForwardIterator!");
 
     virtual IteratorType begin() const = 0;
 
