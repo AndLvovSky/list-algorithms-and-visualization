@@ -8,6 +8,15 @@ ArrayList<T>::ArrayList() : Container() {
 }
 
 template <typename T>
+ArrayList<T>::ArrayList(const std::initializer_list<T>& init_list) : ArrayList() {
+    resize(init_list.size());
+    int i = 0;
+    for (auto& value: init_list) {
+        values[i++] = value;
+    }
+}
+
+template <typename T>
 ArrayList<T>::~ArrayList() {
     delete[] values;
 }
@@ -86,7 +95,12 @@ int ArrayList<T>::get_capacity() {
 template <typename T>
 void ArrayList<T>::enlarge(int size) {
     if (size <= capacity) return;
-    capacity *= 2;
+    while (size > capacity) capacity *= 2;
+    if (is_empty()) {
+        delete[] values;
+        values = new T[capacity];
+        return;
+    }
     T* values_copy = new T[get_size()];
     for (int i = 0; i < get_size(); i++) {
         values_copy[i] = values[i];

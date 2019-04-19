@@ -36,6 +36,8 @@ public:
 
     ArrayList();
 
+    ArrayList(const std::initializer_list<T>& init_list);
+
     virtual ~ArrayList() override;
 
     iterator begin() const override;

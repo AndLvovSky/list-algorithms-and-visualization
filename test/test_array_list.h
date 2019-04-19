@@ -27,6 +27,8 @@ private slots:
 
     void test_erase();
 
+    void test_init_list();
+
 };
 
 #endif // TEST_ARRAY_LIST_H

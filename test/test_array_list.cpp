@@ -88,3 +88,13 @@ void TestArrayList::test_erase() {
     QVERIFY(list.get_size() == 2);
     QVERIFY(nums == target_nums);
 }
+
+void TestArrayList::test_init_list() {
+    ArrayList<int> list = {1, 2, 3};
+    QVERIFY(list.get_size() == 3);
+    QVERIFY(list.get_capacity() == 4);
+    std::vector<int> target_nums = {1, 2, 3};
+    std::vector<int> real_nums;
+    for (auto num: list) real_nums.push_back(num);
+    QVERIFY(real_nums == target_nums);
+}
