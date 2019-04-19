@@ -1,7 +1,5 @@
 #include "doubly_linked_list.h"
 
-using std::make_shared;
-
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList() : Container() {
     head = tail = nullptr;
@@ -53,7 +51,7 @@ void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
         return;
     }
     auto node = it.current;
-    auto new_node = make_shared<Node>(value, node->prev, node);
+    auto new_node = std::make_shared<Node>(value, node->prev, node);
     node->prev->next = new_node;
     node->prev = new_node;
     inc_size();
@@ -78,9 +76,9 @@ void DoublyLinkedList<T>::erase(const iterator& it) {
 template <typename T>
 void DoublyLinkedList<T>::push_front(const T& value) {
     if (is_empty()) {
-        head = tail = make_shared<Node>(value, nullptr, nullptr);
+        head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
-        auto new_head = make_shared<Node>(value, nullptr, head);
+        auto new_head = std::make_shared<Node>(value, nullptr, head);
         head->prev = new_head;
         head = new_head;
     }
@@ -90,9 +88,9 @@ void DoublyLinkedList<T>::push_front(const T& value) {
 template <typename T>
 void DoublyLinkedList<T>::push_back(const T& value) {
     if (is_empty()) {
-        head = tail = make_shared<Node>(value, nullptr, nullptr);
+        head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
-        auto new_tail = make_shared<Node>(value, tail, nullptr);
+        auto new_tail = std::make_shared<Node>(value, tail, nullptr);
         tail->next = new_tail;
         tail = new_tail;
     }

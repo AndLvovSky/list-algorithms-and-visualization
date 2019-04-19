@@ -1,7 +1,6 @@
 #include "test_doubly_linked_list.h"
 #include "list/container/doubly_linked_list/doubly_linked_list.h"
 #include <vector>
-#include <iostream>
 
 TestDoublyLinkedList::TestDoublyLinkedList() {}
 

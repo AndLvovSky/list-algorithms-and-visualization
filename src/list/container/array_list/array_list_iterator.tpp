@@ -46,5 +46,5 @@ int ArrayListIterator<T>::operator - (const ArrayListIterator& it) {
 
 template <typename T>
 ArrayListIterator<T> ArrayListIterator<T>::operator + (int delta) {
-    return iterator(current + delta, list);
+    return ArrayListIterator<T>(current + delta, list);
 }

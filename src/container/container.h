@@ -33,6 +33,4 @@ public:
 
 };
 
-#include "container.tpp"
-
 #endif // CONTAINER_H

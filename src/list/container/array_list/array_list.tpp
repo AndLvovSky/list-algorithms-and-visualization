@@ -3,12 +3,13 @@
 
 template <typename T>
 ArrayList<T>::ArrayList() : Container() {
-    values = new int[1];
+    values = new T[1];
+    capacity = 1;
 }
 
 template <typename T>
 ArrayList<T>::~ArrayList() {
-    delete values;
+    delete[] values;
 }
 
 template <typename T>
@@ -38,6 +39,8 @@ template <typename T>
 void ArrayList<T>::insert(const iterator& it, const T& value) {
     if (get_size() == capacity) {
         resize(get_size() + 1);
+    } else {
+        inc_size();
     }
     int pos = it.current;
     for (int i = get_size() - 2; i >= pos; i--) {
@@ -59,6 +62,8 @@ template <typename T>
 void ArrayList<T>::push_back(const T& value) {
     if (get_size() == capacity) {
         resize(get_size() + 1);
+    } else {
+        inc_size();
     }
     values[get_size() - 1] = value;
 }
@@ -80,9 +85,8 @@ int ArrayList<T>::get_capacity() {
 
 template <typename T>
 void ArrayList<T>::enlarge(int size) {
-    if (capacity <= this->capacity) return;
-    int new_capacity = 1 << int(ceil(std::log2(size)));
-    this->capacity = new_capacity;
+    if (size <= capacity) return;
+    capacity *= 2;
     T* values_copy = new T[get_size()];
     for (int i = 0; i < get_size(); i++) {
         values_copy[i] = values[i];
@@ -101,6 +105,11 @@ void ArrayList<T>::resize(int size) {
         enlarge(size);
     }
     set_size(size);
+}
+
+template <typename T>
+T& ArrayList<T>::operator [] (int pos) const {
+    return values[((pos % get_size()) + get_size()) % get_size()];
 }
 
 template class ArrayList<int>;
