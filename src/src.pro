@@ -19,7 +19,10 @@ SOURCES += \
     list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp\
     list/container/array_list/array_list_iterator.tpp\
     list/container/array_list/array_list.tpp \
-    container/container.cpp
+    container/container.cpp\
+    list/container/stack/stack.tpp\
+    list/container/queue/queue.tpp\
+    list/container/deque/deque.tpp\
 
 HEADERS += \
     list/iterable_list.h \
@@ -41,7 +44,10 @@ HEADERS += \
     list/access/front_popable.h\
     list/container/array_list/array_list_iterator.h \
     list/container/array_list/array_list.h \
-    list/access/random_accessible.h
+    list/access/random_accessible.h\
+    list/container/stack/stack.h\
+    list/container/queue/queue.h\
+    list/container/deque/deque.h\
 
 unix {
     target.path = /usr/lib

@@ -41,6 +41,8 @@ public:
 
     DoublyLinkedList();
 
+    virtual ~DoublyLinkedList() override;
+
     iterator begin() const override;
 
     iterator end() const override;

@@ -6,6 +6,9 @@ DoublyLinkedList<T>::DoublyLinkedList() : Container() {
 }
 
 template <typename T>
+DoublyLinkedList<T>::~DoublyLinkedList() {}
+
+template <typename T>
 typename DoublyLinkedList<T>::iterator
 DoublyLinkedList<T>::begin() const {
     return iterator(this->head);
