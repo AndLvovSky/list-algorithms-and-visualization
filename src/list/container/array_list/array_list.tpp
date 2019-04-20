@@ -126,4 +126,22 @@ T& ArrayList<T>::operator [] (int pos) const {
     return values[((pos % get_size()) + get_size()) % get_size()];
 }
 
+template <typename T>
+bool ArrayList<T>::operator == (const ArrayList& other) const {
+    if (this->get_size() != other.get_size()) return false;
+    auto this_it = this->begin();
+    auto other_it = other.begin();
+    while (this_it != this->end()) {
+        if (!(*this_it == *other_it)) return false;
+        ++this_it;
+        ++other_it;
+    }
+    return true;
+}
+
+template <typename T>
+bool ArrayList<T>::operator != (const ArrayList& other) const {
+    return !(*this == other);
+}
+
 template class ArrayList<int>;

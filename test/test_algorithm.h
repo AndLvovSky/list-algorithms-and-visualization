@@ -19,6 +19,10 @@ private slots:
 
     void test_for_each_2();
 
+    void test_count_if();
+
+    void test_reverse();
+
 };
 
 #endif // TEST_ALGORITHM_H

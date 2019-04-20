@@ -98,3 +98,10 @@ void TestArrayList::test_init_list() {
     for (auto num: list) real_nums.push_back(num);
     QVERIFY(real_nums == target_nums);
 }
+
+void TestArrayList::test_equality_operator() {
+    ArrayList<int> list = {1, 2, 3};
+    QVERIFY(list == ArrayList<int>({1, 2, 3}));
+    QVERIFY(list != ArrayList<int>({1, 2, 3, 4}));
+    QVERIFY(list != ArrayList<int>({5, 4, 7}));
+}

@@ -62,6 +62,10 @@ public:
 
     void resize(int size);
 
+    bool operator == (const ArrayList& other) const;
+
+    bool operator != (const ArrayList& other) const;
+
 };
 
 #include "array_list.tpp"
