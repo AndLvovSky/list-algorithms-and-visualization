@@ -4,6 +4,7 @@
 #include "test_stack.h"
 #include "test_queue.h"
 #include "test_deque.h"
+#include "test_algorithm.h"
 
 int main(int argc, char* argv[]) {
     int status = 0;
@@ -25,6 +26,10 @@ int main(int argc, char* argv[]) {
     }
     {
         TestDeque obj;
+        status |= QTest::qExec(&obj, argc, argv);
+    }
+    {
+        TestAlgorithm obj;
         status |= QTest::qExec(&obj, argc, argv);
     }
     return status;

@@ -23,6 +23,7 @@ SOURCES += \
     list/container/stack/stack.tpp\
     list/container/queue/queue.tpp\
     list/container/deque/deque.tpp\
+    container/algorithm/algorithm.tpp\
 
 HEADERS += \
     list/iterable_list.h \
@@ -48,6 +49,7 @@ HEADERS += \
     list/container/stack/stack.h\
     list/container/queue/queue.h\
     list/container/deque/deque.h\
+    container/algorithm/algorithm.h
 
 unix {
     target.path = /usr/lib
