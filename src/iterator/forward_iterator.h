@@ -12,6 +12,8 @@ struct ForwardIterator {
 
     virtual bool operator != (const ForwardIterator& it) const = 0;
 
+    virtual ForwardIterator& operator = (const ForwardIterator& it) = 0;
+
 };
 
 #endif // FORWARD_ITERATOR_H

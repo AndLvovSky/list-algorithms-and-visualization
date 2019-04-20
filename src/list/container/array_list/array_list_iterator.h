@@ -35,6 +35,8 @@ public:
 
     ArrayListIterator operator + (int delta);
 
+    ArrayListIterator& operator = (const ForwardIterator<T>& it) override;
+
 };
 
 #include "array_list_iterator.tpp"

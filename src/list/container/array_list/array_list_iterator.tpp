@@ -48,3 +48,11 @@ template <typename T>
 ArrayListIterator<T> ArrayListIterator<T>::operator + (int delta) {
     return ArrayListIterator<T>(current + delta, list);
 }
+
+template <typename T>
+ArrayListIterator<T>& ArrayListIterator<T>::
+operator = (const ForwardIterator<T>& it) {
+    this->current =
+        static_cast<const ArrayListIterator<T>&>(it).current;
+    return *this;
+}

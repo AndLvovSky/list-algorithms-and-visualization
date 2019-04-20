@@ -46,3 +46,31 @@ void TestAlgorithm::test_reverse() {
     Algorithm<ArrayList, int>::reverse(list.begin(), list.end());
     QCOMPARE(list, ArrayList<int>({4, 3, 2, 1}));
 }
+
+void TestAlgorithm::test_min_max_1() {
+    ArrayList<int> list = {1, 0, -5, 3, 1};
+    auto min_it = Algorithm<ArrayList, int>::min(list.begin(), list.end());
+    QVERIFY(*min_it == -5);
+    auto max_it = Algorithm<ArrayList, int>::max(list.begin(), list.end());
+    QVERIFY(*max_it == 3);
+}
+
+void TestAlgorithm::test_min_max_2() {
+    struct C {
+        int x;
+        int y;
+        C() = default;
+        C(int x, int y) : x(x), y(y) {}
+        bool operator<(const C& other) {
+            return this->x < other.x;
+        }
+        bool operator==(const C& other) {
+            return this->x == other.x && this->y == other.y;
+        }
+    };
+    ArrayList<C> list = {C(1, 2), C(-4, -1), C(3, -5), C(2, 5)};
+    auto min_it = Algorithm<ArrayList, C>::min(list.begin(), list.end());
+    QVERIFY(*min_it == C(-4, -1));
+    auto max_it = Algorithm<ArrayList, C>::max(list.begin(), list.end());
+    QVERIFY(*max_it == C(3, -5));
+}

@@ -26,3 +26,11 @@ bool DoublyLinkedListAbstractIterator<T>::
 operator != (const ForwardIterator<T>& it) const {
     return !(*this == it);
 }
+
+template <typename T>
+DoublyLinkedListAbstractIterator<T>& DoublyLinkedListAbstractIterator<T>::
+operator = (const ForwardIterator<T>& it) {
+    this->current =
+        static_cast<const DoublyLinkedListAbstractIterator<T>&>(it).current;
+    return *this;
+}

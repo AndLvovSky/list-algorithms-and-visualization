@@ -26,6 +26,9 @@ public:
 
     bool operator != (const ForwardIterator<T>& it) const override;
 
+    DoublyLinkedListAbstractIterator& operator = (
+        const ForwardIterator<T>& it) override;
+
 };
 
 #include "doubly_linked_list_abstract_iterator.tpp"

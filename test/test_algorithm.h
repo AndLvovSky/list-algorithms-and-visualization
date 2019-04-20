@@ -23,6 +23,10 @@ private slots:
 
     void test_reverse();
 
+    void test_min_max_1();
+
+    void test_min_max_2();
+
 };
 
 #endif // TEST_ALGORITHM_H
