@@ -6,11 +6,27 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-INCLUDEPATH += $$PWD/../src
-
 SOURCES += \   
-    test_linked_list.cpp \
-    main_test.cpp
+    main_test.cpp \
+    test_doubly_linked_list.cpp \
+    test_array_list.cpp \
+    test_stack.cpp \
+    test_queue.cpp \
+    test_deque.cpp \
+    test_algorithm.cpp
 
 HEADERS += \
-    test_linked_list.h
+    test_doubly_linked_list.h \
+    test_array_list.h \
+    test_stack.h \
+    test_queue.h \
+    test_deque.h \
+    test_algorithm.h
+
+LIBS += -L$$OUT_PWD/../src/debug/ -llistlib
+
+INCLUDEPATH += $$PWD/../src
+
+DEPENDPATH += $$PWD/../src
+
+DESTDIR = $$OUT_PWD/../src/debug/
