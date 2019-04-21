@@ -22,17 +22,23 @@ class ArrayList :
         public BackPushable<T>,
         public RandomAccessible<T> {
 
-protected:
-
-    T* values;
-
-    int capacity;
-
-    void enlarge(int capacity);
-
 public:
 
     typedef ArrayListIterator<T> iterator;
+
+protected:
+
+    T* values = new T[1];
+
+    int capacity = 1;
+
+    void enlarge(int capacity);
+
+    void check_iterator(const iterator& it) const;
+
+    void check_size(int size) const;
+
+public:
 
     ArrayList();
 

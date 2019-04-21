@@ -31,6 +31,8 @@ private slots:
 
     void test_equality_operator();
 
+    void test_exceptions();
+
 };
 
 #endif // TEST_ARRAY_LIST_H

@@ -19,6 +19,8 @@ private slots:
 
     void test_pop();
 
+    void test_exceptions();
+
 };
 
 #endif // TEST_DEQUE_H

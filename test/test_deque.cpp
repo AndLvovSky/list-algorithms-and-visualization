@@ -26,3 +26,27 @@ void TestDeque::test_pop() {
    QVERIFY(deque.front() == 2);
    QVERIFY(deque.back() == 3);
 }
+
+void TestDeque::test_exceptions() {
+    Deque<int> deque;
+    deque.set_safety(true);
+    deque.push_back(1);
+    deque.pop_back();
+    bool flag;
+    flag = false;
+    try { deque.pop_back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { deque.pop_front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { deque.back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { deque.front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+}

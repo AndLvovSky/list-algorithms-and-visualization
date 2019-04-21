@@ -23,3 +23,19 @@ void TestQueue::test_pop() {
     QVERIFY(queue.get_size() == 2);
     QVERIFY(queue.front() == 4);
 }
+
+void TestQueue::test_exceptions() {
+    Queue<int> queue;
+    queue.set_safety(true);
+    queue.push_back(1);
+    queue.pop_front();
+    bool flag;
+    flag = false;
+    try { queue.pop_front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { queue.front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+}

@@ -22,13 +22,18 @@ void Queue<T>::push_back(const T& value) {
 
 template <typename T>
 void Queue<T>::pop_front() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     head = head->next;
     dec_size();
 }
 
 template <typename T>
 T& Queue<T>::front() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return head->value();
 }
 

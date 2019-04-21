@@ -34,27 +34,45 @@ void Deque<T>::push_back(const T& value) {
 
 template <typename T>
 T& Deque<T>::front() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return head->value();
 }
 
 template <typename T>
 T& Deque<T>::back() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return tail->value();
 }
 
 template <typename T>
 void Deque<T>::pop_front() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     head = head->next;
-    head->prev = nullptr;
+    if (head == nullptr) {
+        tail = nullptr;
+    } else {
+        head->prev = nullptr;
+    }
     dec_size();
 }
 
 template <typename T>
 void Deque<T>::pop_back() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     tail = tail->prev;
-    tail->next = nullptr;
+    if (tail == nullptr) {
+        head = nullptr;
+    } else {
+        tail->next = nullptr;
+    }
     dec_size();
 }
 

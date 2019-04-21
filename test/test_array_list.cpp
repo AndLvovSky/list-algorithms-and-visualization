@@ -105,3 +105,50 @@ void TestArrayList::test_equality_operator() {
     QVERIFY(list != ArrayList<int>({1, 2, 3, 4}));
     QVERIFY(list != ArrayList<int>({5, 4, 7}));
 }
+
+void TestArrayList::test_exceptions() {
+    ArrayList<int> list = {1};
+    list.set_safety(true);
+    list.pop_back();
+    bool flag;
+    flag = false;
+    try { list.pop_back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.erase(list.begin()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    ArrayList<int> other_list;
+    other_list.push_back(1);
+    flag = false;
+    try { list.insert(other_list.begin(), 5); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.erase(other_list.begin()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.erase(list.end()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+
+    list.resize(0);
+    flag = false;
+    try { list.resize(-5); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list[2]; }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+}

@@ -1,11 +1,9 @@
 #include "array_list.h"
+#include "container/exception/container_exception.h"
 #include <cmath>
 
 template <typename T>
-ArrayList<T>::ArrayList() : Container() {
-    values = new T[1];
-    capacity = 1;
-}
+ArrayList<T>::ArrayList() : Container() {}
 
 template <typename T>
 ArrayList<T>::ArrayList(const std::initializer_list<T>& init_list) : ArrayList() {
@@ -46,6 +44,9 @@ ArrayList<T>::find(const T& value) const {
 
 template <typename T>
 void ArrayList<T>::insert(const iterator& it, const T& value) {
+    if (is_safe()) {
+        check_iterator(it);
+    }
     if (get_size() == capacity) {
         resize(get_size() + 1);
     } else {
@@ -60,6 +61,10 @@ void ArrayList<T>::insert(const iterator& it, const T& value) {
 
 template <typename T>
 void ArrayList<T>::erase(const iterator& it) {
+    if (is_safe()) {
+        check_not_empty();
+        check_iterator(it);
+    }
     int pos = it.current;
     for (int i = pos + 1; i < get_size(); i++) {
         values[i - 1] = values[i];
@@ -79,11 +84,17 @@ void ArrayList<T>::push_back(const T& value) {
 
 template <typename T>
 T& ArrayList<T>::back() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return values[get_size() - 1];
 }
 
 template <typename T>
 void ArrayList<T>::pop_back() {
+    if (is_safe()) {
+        check_not_empty();
+    }
     dec_size();
 }
 
@@ -115,6 +126,9 @@ void ArrayList<T>::enlarge(int size) {
 
 template <typename T>
 void ArrayList<T>::resize(int size) {
+    if (is_safe()) {
+        check_size(size);
+    }
     if (size > get_size()) {
         enlarge(size);
     }
@@ -123,6 +137,9 @@ void ArrayList<T>::resize(int size) {
 
 template <typename T>
 T& ArrayList<T>::operator [] (int pos) const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return values[((pos % get_size()) + get_size()) % get_size()];
 }
 
@@ -142,6 +159,20 @@ bool ArrayList<T>::operator == (const ArrayList& other) const {
 template <typename T>
 bool ArrayList<T>::operator != (const ArrayList& other) const {
     return !(*this == other);
+}
+
+template <typename T>
+void ArrayList<T>::check_iterator(const iterator& it) const {
+    if (this != &it.list || it == end()) {
+        throw ContainerException("Incorrect iterator!");
+    }
+}
+
+template <typename T>
+void ArrayList<T>::check_size(int size) const {
+    if (size < 0) {
+        throw ContainerException("Negative size!");
+    }
 }
 
 template class ArrayList<int>;

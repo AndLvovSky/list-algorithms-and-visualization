@@ -21,13 +21,18 @@ void Stack<T>::push_back(const T& value) {
 
 template <typename T>
 void Stack<T>::pop_back() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     tail = tail->next;
     dec_size();
 }
 
 template <typename T>
 T& Stack<T>::back() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return tail->value();
 }
 
