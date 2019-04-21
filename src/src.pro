@@ -23,7 +23,8 @@ SOURCES += \
     list/container/stack/stack.tpp\
     list/container/queue/queue.tpp\
     list/container/deque/deque.tpp\
-    container/algorithm/algorithm.tpp
+    container/algorithm/algorithm.tpp \
+    container/exception/container_exception.cpp
 
 HEADERS += \
     list/iterable_list.h \
@@ -50,7 +51,8 @@ HEADERS += \
     list/container/queue/queue.h\
     list/container/deque/deque.h\
     container/algorithm/algorithm.h\
-    container/sfinae/sfinae_checker.h
+    container/sfinae/sfinae_checker.h \
+    container/exception/container_exception.h
 
 unix {
     target.path = /usr/lib

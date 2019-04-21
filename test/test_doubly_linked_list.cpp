@@ -1,6 +1,8 @@
 #include "test_doubly_linked_list.h"
 #include "list/container/doubly_linked_list/doubly_linked_list.h"
+#include "container/exception/container_exception.h"
 #include <vector>
+#include <iostream>
 
 TestDoublyLinkedList::TestDoublyLinkedList() {}
 
@@ -54,7 +56,7 @@ void TestDoublyLinkedList::test_erase() {
     list.erase(list.find(3));
     list.erase(list.find(4));
     list.erase(list.begin());
-    list.erase(list.end());
+    list.erase(list.find(list.back()));
     std::vector<int> nums;
     for (auto num: list) nums.push_back(num);
     std::vector<int> target_nums = {2, 5};
@@ -82,4 +84,47 @@ void TestDoublyLinkedList::test_additional_methods() {
     std::vector<int> target_nums = {4, 2, 5};
     QVERIFY(list.get_size() == 3);
     QVERIFY(nums == target_nums);
+}
+
+void TestDoublyLinkedList::test_exceptions() {
+    DoublyLinkedList<int> list;
+    list.set_safety(true);
+    list.push_back(1);
+    list.pop_back();
+    bool flag;
+    flag = false;
+    try { list.pop_back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.pop_front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    flag = false;
+    try { list.front(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    try { list.erase(list.begin()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    DoublyLinkedList<int> other_list;
+    other_list.push_back(1);
+    flag = false;
+    try { list.insert(other_list.begin(), 5); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    try { list.erase(other_list.begin()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    try { list.erase(list.end()); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
 }

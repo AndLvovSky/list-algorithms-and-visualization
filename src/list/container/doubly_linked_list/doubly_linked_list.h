@@ -23,6 +23,12 @@ class DoublyLinkedList :
     public FrontPopable<T>,
     public FrontPushable<T> {
 
+public:
+
+    typedef DoublyLinkedListIterator<T> iterator;
+
+    typedef DoublyLinkedListReverseIterator<T> reverse_iterator;
+
 private:
 
     typedef BidirectionalNode<T> Node;
@@ -33,11 +39,9 @@ private:
 
     NodePtr tail;
 
+    void check_iterator(const iterator& it);
+
 public:
-
-    typedef DoublyLinkedListIterator<T> iterator;
-
-    typedef DoublyLinkedListReverseIterator<T> reverse_iterator;
 
     DoublyLinkedList();
 

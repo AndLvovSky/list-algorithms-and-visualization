@@ -1,4 +1,5 @@
 #include "doubly_linked_list.h"
+#include "container/exception/container_exception.h"
 
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList() : Container() {
@@ -53,6 +54,9 @@ void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
         push_back(value);
         return;
     }
+    if (is_safe()) {
+        check_iterator(it);
+    }
     auto node = it.current;
     auto new_node = std::make_shared<Node>(value, node->prev, node);
     node->prev->next = new_node;
@@ -62,11 +66,15 @@ void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
 
 template <typename T>
 void DoublyLinkedList<T>::erase(const iterator& it) {
+    if (is_safe()) {
+        check_not_empty();
+        check_iterator(it);
+    }
     if (it == begin()) {
         pop_front();
         return;
     }
-    if (it == end()) {
+    if (*it == back()) {
         pop_back();
         return;
     }
@@ -102,28 +110,60 @@ void DoublyLinkedList<T>::push_back(const T& value) {
 
 template <typename T>
 T& DoublyLinkedList<T>::front() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return head->value();
 }
 
 template <typename T>
 T& DoublyLinkedList<T>::back() const {
+    if (is_safe()) {
+        check_not_empty();
+    }
     return tail->value();
 }
 
 template <typename T>
 void DoublyLinkedList<T>::pop_front() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     head = head->next;
-    head->prev = nullptr;
+    if (head == nullptr) {
+        tail = nullptr;
+    } else {
+        head->prev = nullptr;
+    }
     dec_size();
 }
 
 template <typename T>
 void DoublyLinkedList<T>::pop_back() {
-    if (is_empty()) return;
+    if (is_safe()) {
+        check_not_empty();
+    }
     tail = tail->prev;
-    tail->next = nullptr;
+    if (tail == nullptr) {
+        head = nullptr;
+    } else {
+        tail->next = nullptr;
+    }
     dec_size();
+}
+
+template <typename T>
+void DoublyLinkedList<T>::check_iterator(const iterator& it) {
+    bool is_this = false;
+    for (auto this_it = begin(); this_it != end(); ++this_it) {
+        if (it == this_it) {
+            is_this = true;
+            break;
+        }
+    }
+    if (!is_this) {
+        throw ContainerException("Incorrect iterator!");
+    }
 }
 
 template class  DoublyLinkedList<int>;

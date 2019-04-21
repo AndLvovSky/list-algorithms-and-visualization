@@ -25,6 +25,8 @@ private slots:
 
     void test_additional_methods();
 
+    void test_exceptions();
+
 };
 
 #endif // TEST_DOUBLY_LINKED_LIST_H
