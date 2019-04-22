@@ -8,6 +8,12 @@
 #include <memory>
 
 template <typename T>
+/**
+ * @brief The Queue class represents queue.
+ *
+ * Queue is a LIFO (Last In First Out) container,
+ * that is you can push to back and pop from front of it.
+ */
 class Queue :
     public Container,
     public FrontPopable<T>,
@@ -15,18 +21,26 @@ class Queue :
 
 private:
 
+    /** Node type. */
     typedef ForwardNode<T> Node;
 
+    /** Node pointer type. */
     typedef std::shared_ptr<Node> NodePtr;
 
-    NodePtr head;
+    NodePtr head; /**< Pointer to the head node. */
 
-    NodePtr tail;
+    NodePtr tail; /**< Pointer to the tail node. */
 
 public:
 
+    /**
+     * Default Queue constructor.
+     */
     Queue();
 
+    /**
+     * Queue destructor.
+     */
     virtual ~Queue() override;
 
     T& front() const override;

@@ -8,7 +8,7 @@ template<typename T>
 struct Node {
 
     /**
-     * @return Value, that keeps this node.
+     * @return Value, that this node keeps.
      */
     virtual T& value() = 0;
 

@@ -3,6 +3,10 @@
 
 #include <type_traits>
 
+/**
+ * Namespace is used for SFINAE checks, that allow to determine
+ * existing of operator less (<).
+ */
 namespace SFINAEChecker {
 
     struct No {};

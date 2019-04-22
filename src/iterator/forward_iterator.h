@@ -27,7 +27,7 @@ struct ForwardIterator {
 
     /**
      * @param it - other iterator.
-     * @return True if iterators are equal, false otherwise.
+     * @return True if iterators are not equal, false otherwise.
      */
     virtual bool operator != (const ForwardIterator& it) const = 0;
 
