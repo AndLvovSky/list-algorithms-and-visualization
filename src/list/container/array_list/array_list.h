@@ -15,6 +15,13 @@
 #include "array_list_iterator.h"
 
 template <typename T>
+/**
+ * @brief The ArrayList class represents array list.
+ *
+ * ArrayList is a container. It's possible to iterate through it in
+ * straight order. You can push to and pop from back of this list.
+ * Every element is accesible with constant time.
+ */
 class ArrayList :
         public Container,
         public IterableList<T, ArrayListIterator<T>>,
@@ -24,26 +31,46 @@ class ArrayList :
 
 public:
 
+    /** Type of straight iterator. */
     typedef ArrayListIterator<T> iterator;
 
-protected:
+private:
 
-    T* values = new T[1];
+    T* values = new T[1]; /**< Array in which values are located. */
 
-    int capacity = 1;
+    int capacity = 1; /**< Current capacity. */
 
+    /**
+     * Enlarges list to specified capacity.
+     */
     void enlarge(int capacity);
 
+    /**
+     * Throws exception if specified iterator is incorrect.
+     */
     void check_iterator(const iterator& it) const;
 
+    /**
+     * Throws exception if specified size is incorrect.
+     */
     void check_size(int size) const;
 
 public:
 
+    /**
+     * Default ArrayList constructor.
+     */
     ArrayList();
 
+    /**
+     * Initializes ArrayList with elements of specified initializer list.
+     * @param init_list - elements to set.
+     */
     ArrayList(const std::initializer_list<T>& init_list);
 
+    /**
+     * ArrayList destrcutor.
+     */
     virtual ~ArrayList() override;
 
     iterator begin() const override;
@@ -64,8 +91,18 @@ public:
 
     T& operator [] (int pos) const override;
 
+    /**
+     * @return Current capacity.
+     *
+     * It's not the same with size. You have access to elements in
+     * positions beetween size and capacity, but their values are undefined.
+     */
     int get_capacity();
 
+    /**
+     * Changes list size to the specified.
+     * @param size
+     */
     void resize(int size);
 
     bool operator == (const ArrayList& other) const;

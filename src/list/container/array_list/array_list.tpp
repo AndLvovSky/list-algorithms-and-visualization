@@ -44,6 +44,10 @@ ArrayList<T>::find(const T& value) const {
 
 template <typename T>
 void ArrayList<T>::insert(const iterator& it, const T& value) {
+    if (it == end()) {
+        push_back(value);
+        return;
+    }
     if (is_safe()) {
         check_iterator(it);
     }

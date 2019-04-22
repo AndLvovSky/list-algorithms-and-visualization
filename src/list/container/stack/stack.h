@@ -8,6 +8,12 @@
 #include <memory>
 
 template <typename T>
+/**
+ * @brief The Stack class represents stack.
+ *
+ * Stack is a FIFO (First In First Out) container,
+ * that is you can push to back and pop from back of it.
+ */
 class Stack :
     public Container,
     public BackPopable<T>,
@@ -15,16 +21,24 @@ class Stack :
 
 private:
 
+    /** Node type. */
     typedef ForwardNode<T> Node;
 
+    /** Node pointer type. */
     typedef std::shared_ptr<Node> NodePtr;
 
-    NodePtr tail;
+    NodePtr tail; /**< Pointer to the tail node. */
 
 public:
 
+    /**
+     * Default Stack constructor.
+     */
     Stack();
 
+    /**
+     * Stack destructor.
+     */
     virtual ~Stack() override;
 
     void push_back(const T& value) override;

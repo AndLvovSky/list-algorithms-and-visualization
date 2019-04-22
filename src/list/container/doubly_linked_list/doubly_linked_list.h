@@ -14,6 +14,13 @@
 #include <memory>
 
 template <typename T>
+/**
+ * @brief The DoublyLinkedList class represents doubly-linked list.
+ *
+ * DoublyLinkedList is a container. It's possible to iterate through it in
+ * straight and in reverse orders. You can push to and pop from
+ * back and front of this list.
+ */
 class DoublyLinkedList :
     public Container,
     public IterableList<T, DoublyLinkedListIterator<T>>,
@@ -25,26 +32,39 @@ class DoublyLinkedList :
 
 public:
 
+    /** Type of straight iterator. */
     typedef DoublyLinkedListIterator<T> iterator;
 
+    /** Type of reverse iterator. */
     typedef DoublyLinkedListReverseIterator<T> reverse_iterator;
 
 private:
 
+    /** Type of node, that uses this list. */
     typedef BidirectionalNode<T> Node;
 
+    /** Type of node pointer. */
     typedef std::shared_ptr<Node> NodePtr;
 
-    NodePtr head;
+    NodePtr head; /**< Pointer to head node. */
 
-    NodePtr tail;
+    NodePtr tail; /**< Pointer to tail node. */
 
+    /**
+     * Throws ContainerException if specified iterator is incorrect.
+     */
     void check_iterator(const iterator& it);
 
 public:
 
+    /**
+     * Default DoublyLinkedList constructor.
+     */
     DoublyLinkedList();
 
+    /**
+     * DoublyLinkedList destructor.
+     */
     virtual ~DoublyLinkedList() override;
 
     iterator begin() const override;
