@@ -6,7 +6,7 @@
 #include <list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.h>
 #include <QtCore>
 #include <QtGui>
-#include  <QtWidgets>
+#include <QtWidgets>
 #include "listdecorator.h"
 
 namespace Ui {
@@ -29,6 +29,10 @@ private slots:
     void on_clearButton_clicked();
 
     void on_eraseButton_clicked();
+
+    void on_undoButton_clicked();
+
+    void on_redoButton_clicked();
 
 private:
     Ui::MainWindow *ui;

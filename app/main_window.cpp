@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include "ui_main_window.h"
+#include "appcontext.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
+    AppContext::scene = scene;
 
-    listDecorator = new ListDecorator(scene);
+    listDecorator = new ListDecorator();
 
     // initial list (for test purposes)
     int q = 1;
@@ -47,6 +49,16 @@ void MainWindow::on_clearButton_clicked()
 
 void MainWindow::on_eraseButton_clicked()
 {
-    int position = ui->insertPositionField->value();
+    int position = ui->erasePositionField->value();
     listDecorator->erase(position);
+}
+
+void MainWindow::on_undoButton_clicked()
+{
+    listDecorator->undo();
+}
+
+void MainWindow::on_redoButton_clicked()
+{
+    listDecorator->redo();
 }

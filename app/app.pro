@@ -30,12 +30,17 @@ SOURCES += \
         main.cpp \
         main_window.cpp \
     listdecorator.cpp \
-    listdrawer.cpp
+    listitem.cpp \
+    arrow.cpp \
+    appcontext.cpp
 
 HEADERS += \
         main_window.h \
     listdecorator.h \
-    listdrawer.h
+    listitem.h \
+    arrow.h \
+    point.h \
+    appcontext.h
 
 FORMS += \
         main_window.ui
