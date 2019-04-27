@@ -28,10 +28,21 @@ INCLUDEPATH += $$PWD/../src
 
 SOURCES += \
         main.cpp \
-        main_window.cpp
+        main_window.cpp \
+    listdecorator.cpp \
+    listitem.cpp \
+    arrow.cpp \
+    appcontext.cpp \
+    guiblocker.cpp
 
 HEADERS += \
-        main_window.h
+        main_window.h \
+    listdecorator.h \
+    listitem.h \
+    arrow.h \
+    point.h \
+    appcontext.h \
+    guiblocker.h
 
 FORMS += \
         main_window.ui
@@ -40,3 +51,54 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+SOURCES += \
+    $$PWD/../src/list/node/bidirectional_node.tpp \
+    $$PWD/../src/list/node/forward_node.tpp \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list.tpp \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_iterator.tpp\
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.tpp\
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.tpp\
+    $$PWD/../src/list/container/array_list/array_list_iterator.tpp\
+    $$PWD/../src/list/container/array_list/array_list.tpp \
+    $$PWD/../src/container/container.cpp\
+    $$PWD/../src/list/container/stack/stack.tpp\
+    $$PWD/../src/list/container/queue/queue.tpp\
+    $$PWD/../src/list/container/deque/deque.tpp\
+    $$PWD/../src/container/algorithm/algorithm.tpp \
+    $$PWD/../src/container/exception/container_exception.cpp
+
+HEADERS += \
+    $$PWD/../src/list/iterable_list.h \
+    $$PWD/../src/list/node/bidirectional_node.h \
+    $$PWD/../src/list/node/forward_node.h \
+    $$PWD/../src/list/node/node.h \
+    $$PWD/../src/container/container.h \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list.h \
+    $$PWD/../src/iterator/forward_iterator.h \
+    $$PWD/../src/iterator/bidirectional_iterator.h \
+    $$PWD/../src/iterator/iterable.h \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_iterator.h \
+    $$PWD/../src/iterator/reverse_iterable.h \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_abstract_iterator.h \
+    $$PWD/../src/list/container/doubly_linked_list/doubly_linked_list_reverse_iterator.h\
+    $$PWD/../src/list/access/back_pushable.h\
+    $$PWD/../src/list/access/front_pushable.h \
+    $$PWD/../src/list/access/back_popable.h \
+    $$PWD/../src/list/access/front_popable.h\
+    $$PWD/../src/list/container/array_list/array_list_iterator.h \
+    $$PWD/../src/list/container/array_list/array_list.h \
+    $$PWD/../src/list/access/random_accessible.h\
+    $$PWD/../src/list/container/stack/stack.h\
+    $$PWD/../src/list/container/queue/queue.h\
+    $$PWD/../src/list/container/deque/deque.h\
+    $$PWD/../src/container/algorithm/algorithm.h\
+    $$PWD/../src/container/sfinae/sfinae_checker.h \
+    $$PWD/../src/container/exception/container_exception.h
+
+INCLUDEPATH += $$PWD/../src
+
+DEPENDPATH += $$PWD/../src
+
+DESTDIR = $$OUT_PWD/../src/debug/

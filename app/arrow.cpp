@@ -1,0 +1,91 @@
+#include "arrow.h"
+#include "appcontext.h"
+#include "math.h"
+#include <array>
+
+Arrow::Arrow(Point *p1, Point *p2) : p1(p1), p2(p2)
+{
+    main = nullptr;
+    side1 = nullptr;
+    side2 = nullptr;
+}
+
+void Arrow::hide()
+{
+    main->setVisible(false);
+    side1->setVisible(false);
+    side2->setVisible(false);
+}
+
+void Arrow::draw()
+{
+    QGraphicsScene* scene = AppContext::scene;
+
+    if (!main) {
+        main = scene->addLine(p1->x, p1->y, p2->x, p2->y);
+    } else {
+        main->setLine(p1->x, p1->y, p2->x, p2->y);
+    }
+
+    auto points = calculatePointsPosition();
+    if (!side1) {
+        side1 = scene->addLine(points[0]->x, points[0]->y, points[1]->x, points[1]->y);
+    } else {
+        side1->setLine(points[0]->x, points[0]->y, points[1]->x, points[1]->y);
+    }
+    if (!side2) {
+        side2 = scene->addLine(points[2]->x, points[2]->y, points[3]->x, points[3]->y);
+    } else {
+        side2->setLine(points[2]->x, points[2]->y, points[3]->x, points[3]->y);
+    }
+}
+
+void Arrow::change(Point *p1, Point *p2)
+{
+    this->p1 = p1;
+    this->p2 = p2;
+    draw();
+}
+
+void Arrow::moveRightByOne()
+{
+    main->setPos(main->x() + 150, main->y());
+    side1->setPos(side1->x() + 150, side1->y());
+    side2->setPos(side2->x() + 150, side2->y());
+}
+
+std::array<Point *, 4> Arrow::calculatePointsPosition()
+{
+    const double cos = 0.466;
+    const double sin = 0.200;
+    double dx = p1->x - p2->x;
+    double dy = p1->y - p2->y;
+
+    if (dy < 0.01 && dy > -0.01) { // dy == 0
+        dx = (dx > 0) ? 50 : -50;
+    } else {    // dy != 0
+        if (abs(dx) > abs(dy)) {
+            dy /= (abs(dx) / 50);
+            if (dx > 0) {
+                dx = 50;
+            } else {
+                dx = -50;
+            }
+        } else {
+            dx /= (abs(dy) / 50);
+            if (dy > 0) {
+                dy = 50;
+            } else {
+                dy = -50;
+            }
+        }
+    }
+
+    std::array<Point*, 4> arr;
+    arr[0] = new Point(p2->x, p2->y);
+    arr[1] = new Point(p2->x + (dx * cos + dy * -sin), p2->y + (dx * sin + dy * cos));
+    arr[2] = new Point(p2->x, p2->y);
+    arr[3] = new Point(p2->x + (dx * cos + dy * sin), p2->y + (dx * -sin + dy * cos));
+
+    return arr;
+}
