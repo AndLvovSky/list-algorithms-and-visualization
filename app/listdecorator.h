@@ -13,6 +13,7 @@ private:
     DoublyLinkedList<ListItem*> list;
     std::vector<DoublyLinkedList<ListItem*>> memento;
     int currentMementoIndex;
+    QGraphicsScene *scene;
 
 public:
     ListDecorator();
@@ -26,8 +27,11 @@ public:
     void drawList();
 
 private:
+    void updateSceneSize();
     DoublyLinkedList<ListItem*> copy(DoublyLinkedList<ListItem*> list);
     DoublyLinkedList<ListItem*>::iterator getIthIterator(int i);
+    ListItem* getIthValue(int i);
+    void connectTwoListItems(int index1, int index2);
 };
 
 #endif // LISTDECORATOR_H
