@@ -10,6 +10,13 @@ Arrow::Arrow(Point *p1, Point *p2) : p1(p1), p2(p2)
     side2 = nullptr;
 }
 
+void Arrow::hide()
+{
+    main->setVisible(false);
+    side1->setVisible(false);
+    side2->setVisible(false);
+}
+
 void Arrow::draw()
 {
     QGraphicsScene* scene = AppContext::scene;

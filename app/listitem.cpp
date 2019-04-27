@@ -11,6 +11,15 @@ ListItem::ListItem(int value): value(value)
     rectangle = nullptr;
 }
 
+void ListItem::hide()
+{
+    rectangle->setVisible(false);
+    valueText->setVisible(false);
+    indexText->setVisible(false);
+    leftArrow->hide();
+    rightArrow->hide();
+}
+
 void ListItem::draw(int index)
 {
     drawBody(index);

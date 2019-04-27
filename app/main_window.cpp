@@ -7,19 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QMainWindow::showMaximized();
 
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
     AppContext::scene = scene;
+    AppContext::guiBlocker = new GuiBlocker(ui);
 
     listDecorator = new ListDecorator();
-
-    // initial list (for test purposes)
-    int q = 1;
-    for (int i = 0; i < 6; i++) {
-        listDecorator->push_back(q);
-        q*=10;
-    }
 }
 
 

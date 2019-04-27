@@ -32,7 +32,8 @@ SOURCES += \
     listdecorator.cpp \
     listitem.cpp \
     arrow.cpp \
-    appcontext.cpp
+    appcontext.cpp \
+    guiblocker.cpp
 
 HEADERS += \
         main_window.h \
@@ -40,7 +41,8 @@ HEADERS += \
     listitem.h \
     arrow.h \
     point.h \
-    appcontext.h
+    appcontext.h \
+    guiblocker.h
 
 FORMS += \
         main_window.ui

@@ -17,6 +17,7 @@ void ListDecorator::push_back(int value)
     memento.insert(memento.begin() + currentMementoIndex, copy(list));
 
     //Drawing
+    blockGui(1000);
     updateSceneSize();
     int lastIndex = list.get_size() - 1;
     ListItem *lastItem = getIthValue(lastIndex);
@@ -48,6 +49,7 @@ void ListDecorator::insert(int value, int position)
         }
 
         if (position > 0 && position + 1 < list.get_size()) {
+            blockGui(2200);
             connectTwoListItems(position - 1, position + 1);
             QTimer::singleShot(300, [=](){ insertItem->drawBodyUnderList(position); });
             QTimer::singleShot(600, [=](){ getIthValue(position - 1)->connectToBelowItem(position, insertItem->LEFT); });
@@ -61,6 +63,7 @@ void ListDecorator::insert(int value, int position)
             QTimer::singleShot(1800, [=](){ insertItem->connectToRightItem(position); });
             QTimer::singleShot(2100, [=](){ drawList(); });
         } else { // position = 0
+            blockGui(1300);
             QTimer::singleShot(300, [=](){ insertItem->drawBody(position); });
             QTimer::singleShot(600, [=](){ insertItem->connectToLeftItem(position); });
             QTimer::singleShot(900, [=](){ insertItem->connectToRightItem(position); });
@@ -72,10 +75,25 @@ void ListDecorator::insert(int value, int position)
 void ListDecorator::erase(int position)
 {
     if (position >= 0 && position < list.get_size()) {
+        ListItem *eraseItem = getIthValue(position);
         list.erase(getIthIterator(position));
         currentMementoIndex++;
         memento.insert(memento.begin() + currentMementoIndex, copy(list));
-        drawList();
+
+        //Drawing
+        eraseItem->hide();
+        if (position > 0 && position < list.get_size()) {
+            blockGui(1000);
+            ListItem *prevItem = getIthValue(position - 1);
+            ListItem *nextItem = getIthValue(position);
+            QTimer::singleShot(300, [=](){ prevItem->connectToListItem(position - 1, position + 1, prevItem->LEFT); });
+            QTimer::singleShot(600, [=](){ nextItem->connectToListItem(position + 2, position, prevItem->RIGHT); });
+            QTimer::singleShot(900, [=](){ drawList(); });
+        } else{
+            blockGui(300);
+            QTimer::singleShot(300, [=](){ drawList(); });
+        }
+
     }
 }
 
@@ -150,6 +168,12 @@ void ListDecorator::connectTwoListItems(int index1, int index2)
 {
     getIthValue(index1)->connectToListItem(index1, index2, (new ListItem(0))->LEFT);
     getIthValue(index2)->connectToListItem(index2, index1, (new ListItem(0))->RIGHT);
+}
+
+void ListDecorator::blockGui(int ms)
+{
+    AppContext::guiBlocker->disableAll();
+    QTimer::singleShot(ms, [=](){ AppContext::guiBlocker->enableAll(); });
 }
 
 DoublyLinkedList<ListItem*> ListDecorator::copy(DoublyLinkedList<ListItem*> list)

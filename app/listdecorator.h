@@ -32,6 +32,7 @@ private:
     DoublyLinkedList<ListItem*>::iterator getIthIterator(int i);
     ListItem* getIthValue(int i);
     void connectTwoListItems(int index1, int index2);
+    void blockGui(int ms);
 };
 
 #endif // LISTDECORATOR_H

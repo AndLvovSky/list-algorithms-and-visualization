@@ -14,6 +14,8 @@ private:
 public:
     Arrow(Point *p1, Point *p2);
 
+    void hide();
+
     /**
      * @brief draw draw arrow to QGraphicsScene according to start and finish points
      * @param scene QGraphicsScene where arrow will be drawn

@@ -21,6 +21,8 @@ public:
     int value;
     ListItem(int value);
 
+    void hide();
+
     /**
      * @brief draw draw everything
      * @param index
