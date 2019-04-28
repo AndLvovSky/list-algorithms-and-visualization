@@ -34,12 +34,15 @@ private slots:
 
     void on_redoButton_clicked();
 
+    void on_closeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene * scene;
+    ListDecorator *listDecorator;
 
 private:
-    ListDecorator *listDecorator;
+    void resizeElements(int width, int height);
 };
 
 #endif // MAIN_WINDOW_H

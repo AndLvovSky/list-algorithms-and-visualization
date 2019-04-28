@@ -48,13 +48,13 @@ void ListItem::drawBodyUnderList(int index)
 
 void ListItem::drawLeftArrow(int index)
 {
-    leftArrow = new Arrow(new Point(0 + offset(index), 125), new Point(-50 + offset(index), 125));
+    leftArrow = new Arrow(make_shared<Point>(0 + offset(index), 125), make_shared<Point>(-50 + offset(index), 125));
     leftArrow->draw();
 }
 
 void ListItem::drawRightArrow(int index)
 {
-    rightArrow = new Arrow(new Point(100 + offset(index), 75), new Point(150 + offset(index), 75));
+    rightArrow = new Arrow(make_shared<Point>(100 + offset(index), 75), make_shared<Point>(150 + offset(index), 75));
     rightArrow->draw();
 }
 
@@ -82,20 +82,20 @@ void ListItem::connectToListItem(int thisIndex, int otherIndex, ListItem::Positi
         int otherLeftX = 50 + otherIndex * 150;
 
         if (!rightArrow) {
-            rightArrow = new Arrow(new Point(thisRightX, topArrowY), new Point(otherLeftX, topArrowY));
+            rightArrow = new Arrow(make_shared<Point>(thisRightX, topArrowY), make_shared<Point>(otherLeftX, topArrowY));
             rightArrow->draw();
         } else {
-            rightArrow->change(new Point(thisRightX, topArrowY), new Point(otherLeftX, topArrowY));
+            rightArrow->change(make_shared<Point>(thisRightX, topArrowY), make_shared<Point>(otherLeftX, topArrowY));
         }
     } else if (thisPosition == RIGHT) {
         int thisLeftX = 50 + (thisIndex - 1) * 150 ;
         int otherRightX = 50 + (otherIndex - 1) * 150 + 100;
 
         if (!leftArrow) {
-            leftArrow = new Arrow(new Point(thisLeftX, bottomArrowY), new Point(otherRightX, bottomArrowY));
+            leftArrow = new Arrow(make_shared<Point>(thisLeftX, bottomArrowY), make_shared<Point>(otherRightX, bottomArrowY));
             leftArrow->draw();
         } else {
-            leftArrow->change(new Point(thisLeftX, bottomArrowY), new Point(otherRightX, bottomArrowY));
+            leftArrow->change(make_shared<Point>(thisLeftX, bottomArrowY), make_shared<Point>(otherRightX, bottomArrowY));
         }
     }
 }
@@ -117,11 +117,11 @@ void ListItem::connectToBelowItem(int thisIndex, ListItem::Position thisPosition
     if (thisPosition == LEFT) {
         int thisRightX = -100 + thisIndex * 150 + 100;
         int otherLeftX = -100 + (thisIndex + 1) * 150;
-        rightArrow->change(new Point(thisRightX, topArrowY), new Point(otherLeftX, 275));
+        rightArrow->change(make_shared<Point>(thisRightX, topArrowY), make_shared<Point>(otherLeftX, 275));
     } else if (thisPosition == RIGHT) {
         int thisLeftX = 50 + (thisIndex - 1) * 150 + 150;
         int otherRightX = thisIndex * 150;
-        leftArrow->change(new Point(thisLeftX, bottomArrowY), new Point(otherRightX, 325));
+        leftArrow->change(make_shared<Point>(thisLeftX, bottomArrowY), make_shared<Point>(otherRightX, 325));
     }
 }
 

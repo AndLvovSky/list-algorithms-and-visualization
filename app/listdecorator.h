@@ -8,10 +8,12 @@
 #include <QMessageLogger>
 #include "listitem.h"
 
+using namespace std;
+
 class ListDecorator{
 private:
-    DoublyLinkedList<ListItem*> list;
-    std::vector<DoublyLinkedList<ListItem*>> memento;
+    DoublyLinkedList<shared_ptr<ListItem>> list;
+    std::vector<DoublyLinkedList<shared_ptr<ListItem>>> memento;
     int currentMementoIndex;
     QGraphicsScene *scene;
 
@@ -28,9 +30,9 @@ public:
 
 private:
     void updateSceneSize();
-    DoublyLinkedList<ListItem*> copy(DoublyLinkedList<ListItem*> list);
-    DoublyLinkedList<ListItem*>::iterator getIthIterator(int i);
-    ListItem* getIthValue(int i);
+    DoublyLinkedList<shared_ptr<ListItem>> copy(DoublyLinkedList<shared_ptr<ListItem>> list);
+    DoublyLinkedList<shared_ptr<ListItem>>::iterator getIthIterator(int i);
+    shared_ptr<ListItem> getIthValue(int i);
     void connectTwoListItems(int index1, int index2);
     void blockGui(int ms);
 };

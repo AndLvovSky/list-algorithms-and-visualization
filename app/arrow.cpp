@@ -3,7 +3,7 @@
 #include "math.h"
 #include <array>
 
-Arrow::Arrow(Point *p1, Point *p2) : p1(p1), p2(p2)
+Arrow::Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2) : p1(p1), p2(p2)
 {
     main = nullptr;
     side1 = nullptr;
@@ -40,7 +40,7 @@ void Arrow::draw()
     }
 }
 
-void Arrow::change(Point *p1, Point *p2)
+void Arrow::change(shared_ptr<Point> p1, shared_ptr<Point> p2)
 {
     this->p1 = p1;
     this->p2 = p2;
@@ -54,7 +54,7 @@ void Arrow::moveRightByOne()
     side2->setPos(side2->x() + 150, side2->y());
 }
 
-std::array<Point *, 4> Arrow::calculatePointsPosition()
+array<shared_ptr<Point>, 4> Arrow::calculatePointsPosition()
 {
     const double cos = 0.466;
     const double sin = 0.200;
@@ -81,11 +81,11 @@ std::array<Point *, 4> Arrow::calculatePointsPosition()
         }
     }
 
-    std::array<Point*, 4> arr;
-    arr[0] = new Point(p2->x, p2->y);
-    arr[1] = new Point(p2->x + (dx * cos + dy * -sin), p2->y + (dx * sin + dy * cos));
-    arr[2] = new Point(p2->x, p2->y);
-    arr[3] = new Point(p2->x + (dx * cos + dy * sin), p2->y + (dx * -sin + dy * cos));
+    array<shared_ptr<Point>, 4> arr;
+    arr[0] = make_shared<Point>(p2->x, p2->y);
+    arr[1] = make_shared<Point>(p2->x + (dx * cos + dy * -sin), p2->y + (dx * sin + dy * cos));
+    arr[2] = make_shared<Point>(p2->x, p2->y);
+    arr[3] = make_shared<Point>(p2->x + (dx * cos + dy * sin), p2->y + (dx * -sin + dy * cos));
 
     return arr;
 }

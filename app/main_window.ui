@@ -295,6 +295,27 @@ QPushButton:pressed{
      <string>Redo</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>240</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:red;
+}
+QPushButton:hover{
+background-color:#8b0000;
+}</string>
+    </property>
+    <property name="text">
+     <string>Close</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

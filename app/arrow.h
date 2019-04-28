@@ -5,14 +5,16 @@
 #include <QtGui>
 #include <QtWidgets>
 
+using namespace std;
+
 class Arrow
 {
 private:
-    Point *p1, *p2;
+    shared_ptr<Point> p1, p2;
     QGraphicsLineItem *main, *side1, *side2;
 
 public:
-    Arrow(Point *p1, Point *p2);
+    Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2);
 
     void hide();
 
@@ -27,12 +29,12 @@ public:
      * @param p1 start point
      * @param p2 finish point
      */
-    void change(Point *p1, Point *p2);
+    void change(shared_ptr<Point> p1, shared_ptr<Point> p2);
 
     void moveRightByOne();
 
 private:
-    std::array<Point*, 4> calculatePointsPosition();
+    array<shared_ptr<Point>, 4> calculatePointsPosition();
 };
 
 #endif // ARROW_H
