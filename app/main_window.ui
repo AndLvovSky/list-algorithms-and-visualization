@@ -57,7 +57,7 @@ QLabel{
     </property>
     <property name="minimumSize">
      <size>
-      <width>1900</width>
+      <width>1000</width>
       <height>200</height>
      </size>
     </property>
@@ -85,10 +85,10 @@ QLabel{
      </rect>
     </property>
     <property name="minimum">
-     <number>-100000</number>
+     <number>-99</number>
     </property>
     <property name="maximum">
-     <number>100000</number>
+     <number>99</number>
     </property>
    </widget>
    <widget class="QPushButton" name="insertButton">
@@ -114,7 +114,7 @@ QLabel{
      </rect>
     </property>
     <property name="minimum">
-     <number>-100000</number>
+     <number>-99</number>
     </property>
     <property name="value">
      <number>0</number>
