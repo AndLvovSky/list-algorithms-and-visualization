@@ -43,10 +43,10 @@ ArrayList<T>::find(const T& value) const {
 }
 
 template <typename T>
-void ArrayList<T>::insert(const iterator& it, const T& value) {
+ArrayList<T>& ArrayList<T>::insert(const iterator& it, const T& value) {
     if (it == end()) {
         push_back(value);
-        return;
+        return *this;
     }
     if (is_safe()) {
         check_iterator(it);
@@ -61,10 +61,11 @@ void ArrayList<T>::insert(const iterator& it, const T& value) {
         values[i + 1] = values[i];
     }
     values[pos] = value;
+    return *this;
 }
 
 template <typename T>
-void ArrayList<T>::erase(const iterator& it) {
+ArrayList<T>& ArrayList<T>::erase(const iterator& it) {
     if (is_safe()) {
         check_not_empty();
         check_iterator(it);
@@ -74,16 +75,18 @@ void ArrayList<T>::erase(const iterator& it) {
         values[i - 1] = values[i];
     }
     dec_size();
+    return *this;
 }
 
 template <typename T>
-void ArrayList<T>::push_back(const T& value) {
+ArrayList<T>& ArrayList<T>::push_back(const T& value) {
     if (get_size() == capacity) {
         resize(get_size() + 1);
     } else {
         inc_size();
     }
     values[get_size() - 1] = value;
+    return *this;
 }
 
 template <typename T>
@@ -95,11 +98,12 @@ T& ArrayList<T>::back() const {
 }
 
 template <typename T>
-void ArrayList<T>::pop_back() {
+ArrayList<T>& ArrayList<T>::pop_back() {
     if (is_safe()) {
         check_not_empty();
     }
     dec_size();
+    return *this;
 }
 
 template <typename T>

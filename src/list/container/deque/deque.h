@@ -47,13 +47,13 @@ public:
      */
     virtual ~Deque() override;
 
-    void push_front(const T& value) override;
+    Deque& push_front(const T& value) override;
 
-    void push_back(const T& value) override;
+    Deque& push_back(const T& value) override;
 
-    void pop_front() override;
+    Deque& pop_front() override;
 
-    void pop_back() override;
+    Deque& pop_back() override;
 
     T& front() const override;
 

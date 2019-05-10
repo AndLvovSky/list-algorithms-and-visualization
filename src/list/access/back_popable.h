@@ -10,8 +10,9 @@ struct BackPopable {
 
     /**
      * Delete the last element.
+     * @return *this.
      */
-    virtual void pop_back() = 0;
+    virtual BackPopable& pop_back() = 0;
 
     /**
      * @return Last element.

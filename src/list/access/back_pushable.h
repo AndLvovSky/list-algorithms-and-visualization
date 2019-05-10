@@ -11,8 +11,9 @@ struct BackPushable {
     /**
      * Add specified element to the back.
      * @param value - value to add.
+     * @return *this.
      */
-    virtual void push_back(const T& value) = 0;
+    virtual BackPushable& push_back(const T& value) = 0;
 
 };
 

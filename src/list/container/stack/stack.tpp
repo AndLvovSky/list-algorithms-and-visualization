@@ -9,7 +9,7 @@ template <typename T>
 Stack<T>::~Stack() {}
 
 template <typename T>
-void Stack<T>::push_back(const T& value) {
+Stack<T>& Stack<T>::push_back(const T& value) {
     if (is_empty()) {
         tail = std::make_shared<Node>(value, nullptr);
     } else {
@@ -17,15 +17,17 @@ void Stack<T>::push_back(const T& value) {
         tail = new_tail;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
-void Stack<T>::pop_back() {
+Stack<T>& Stack<T>::pop_back() {
     if (is_safe()) {
         check_not_empty();
     }
     tail = tail->next;
     dec_size();
+    return *this;
 }
 
 template <typename T>

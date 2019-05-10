@@ -9,7 +9,7 @@ template <typename T>
 Queue<T>::~Queue() {}
 
 template <typename T>
-void Queue<T>::push_back(const T& value) {
+Queue<T>& Queue<T>::push_back(const T& value) {
     if (is_empty()) {
         head = tail = std::make_shared<Node>(value, nullptr);
     } else {
@@ -18,15 +18,17 @@ void Queue<T>::push_back(const T& value) {
         tail = new_tail;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
-void Queue<T>::pop_front() {
+Queue<T>& Queue<T>::pop_front() {
     if (is_safe()) {
         check_not_empty();
     }
     head = head->next;
     dec_size();
+    return *this;
 }
 
 template <typename T>

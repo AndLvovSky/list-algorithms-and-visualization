@@ -77,21 +77,21 @@ public:
 
     iterator find(const T& value) const override;
 
-    void insert(const iterator& it, const T& value) override;
+    DoublyLinkedList& insert(const iterator& it, const T& value) override;
 
-    void erase(const iterator& it) override;
+    DoublyLinkedList& erase(const iterator& it) override;
 
-    void push_front(const T& value) override;
+    DoublyLinkedList& push_front(const T& value) override;
 
-    void push_back(const T& value) override;
+    DoublyLinkedList& push_back(const T& value) override;
 
     T& front() const override;
 
     T& back() const override;
 
-    void pop_front() override;
+    DoublyLinkedList& pop_front() override;
 
-    void pop_back() override;
+    DoublyLinkedList& pop_back() override;
 
 };
 

@@ -33,6 +33,8 @@ private slots:
 
     void test_exceptions();
 
+    void test_chaining();
+
 };
 
 #endif // TEST_ARRAY_LIST_H

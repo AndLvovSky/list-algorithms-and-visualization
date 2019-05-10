@@ -121,10 +121,50 @@ void TestDoublyLinkedList::test_exceptions() {
     try { list.insert(other_list.begin(), 5); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+    flag = false;
     try { list.erase(other_list.begin()); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+    flag = false;
     try { list.erase(list.end()); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+
+    list = DoublyLinkedList<int>();
+    list.set_safety(true);
+    flag = false;
+    try { list.push_back(1).push_front(2)
+        .pop_back().pop_front().pop_back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(list.get_size() == 0);
+    flag = false;
+    try { list.insert(list.begin(), 1).erase(list.begin())
+        .erase(list.end()).insert(list.begin(), 2); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(list.get_size() == 0);
+}
+
+void TestDoublyLinkedList::test_chaining() {
+    DoublyLinkedList<int> list;
+    list.push_back(1).push_front(2).push_back(3);
+    QVERIFY(list.get_size() == 3);
+    QVERIFY(list.front() == 2);
+    QVERIFY(list.back() == 3);
+    list.pop_back().pop_front().push_back(5);
+    QVERIFY(list.front() == 1);
+    QVERIFY(list.back() == 5);
+    QVERIFY(list.get_size() == 2);
+
+    list = DoublyLinkedList<int>();
+    list.insert(list.end(), 1).insert(list.end(), 2)
+        .insert(list.end(), 3).insert(list.find(2), 4)
+        .erase(list.find(2)).erase(list.begin());
+    std::vector<int> nums;
+    for (auto num : list) {
+        nums.push_back(num);
+    }
+    QVERIFY(nums.size() == 2);
+    QVERIFY(nums[0] == 4 && nums[1] == 3);
 }

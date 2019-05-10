@@ -151,4 +151,36 @@ void TestArrayList::test_exceptions() {
     try { list[2]; }
     catch (...) { flag = true; }
     QVERIFY(flag);
+
+    list = {};
+    list.set_safety(true);
+    flag = false;
+    try { list.push_back(1).pop_back().pop_back().push_back(2); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(list.get_size() == 0);
+    flag = false;
+    try { list.insert(list.begin(), 1).erase(list.begin())
+        .erase(list.end()).insert(list.begin(), 2); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(list.get_size() == 0);
+}
+
+void TestArrayList::test_chaining() {
+    ArrayList<int> list;
+    list.push_back(1).push_back(2).push_back(3);
+    QVERIFY(list.get_size() == 3);
+    QVERIFY(list.back() == 3);
+    list.pop_back().pop_back().push_back(5);
+    QVERIFY(list.back() == 5);
+    list.pop_back();
+    QVERIFY(list.back() == 1);
+    QVERIFY(list.get_size() == 1);
+
+    list = {};
+    list.insert(list.end(), 1).insert(list.end(), 2)
+        .insert(list.end(), 3).insert(list.find(2), 4)
+        .erase(list.find(2)).erase(list.begin());
+    QVERIFY(list == ArrayList<int>({4, 3}));
 }

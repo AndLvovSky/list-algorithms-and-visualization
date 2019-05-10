@@ -11,8 +11,9 @@ struct FrontPushable {
     /**
      * Add specified element to the front.
      * @param value - value to add.
+     * @return *this.
      */
-    virtual void push_front(const T& value) = 0;
+    virtual FrontPushable& push_front(const T& value) = 0;
 
 };
 

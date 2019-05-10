@@ -49,4 +49,22 @@ void TestDeque::test_exceptions() {
     try { deque.front(); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+    flag = false;
+    try { deque.push_back(1).push_front(2)
+        .pop_back().pop_front().pop_back(); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(deque.get_size() == 0);
+}
+
+void TestDeque::test_chaining() {
+    Deque<int> deque;
+    deque.push_back(1).push_front(2).push_back(3);
+    QVERIFY(deque.get_size() == 3);
+    QVERIFY(deque.front() == 2);
+    QVERIFY(deque.back() == 3);
+    deque.pop_back().pop_front().push_back(5);
+    QVERIFY(deque.front() == 1);
+    QVERIFY(deque.back() == 5);
+    QVERIFY(deque.get_size() == 2);
 }

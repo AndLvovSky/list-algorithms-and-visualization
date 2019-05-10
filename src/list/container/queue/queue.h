@@ -45,9 +45,9 @@ public:
 
     T& front() const override;
 
-    void pop_front() override;
+    Queue& pop_front() override;
 
-    void push_back(const T& value) override;
+    Queue& push_back(const T& value) override;
 
 };
 

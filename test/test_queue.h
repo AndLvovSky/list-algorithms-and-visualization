@@ -21,6 +21,8 @@ private slots:
 
     void test_exceptions();
 
+    void test_chaining();
+
 };
 
 #endif // TEST_QUEUE_H

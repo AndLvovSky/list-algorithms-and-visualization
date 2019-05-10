@@ -38,4 +38,21 @@ void TestQueue::test_exceptions() {
     try { queue.front(); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+    flag = false;
+    try { queue.push_back(1).pop_front().pop_front().push_back(2); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(queue.get_size() == 0);
+}
+
+void TestQueue::test_chaining() {
+    Queue<int> queue;
+    queue.push_back(1).push_back(2).push_back(3);
+    QVERIFY(queue.get_size() == 3);
+    QVERIFY(queue.front() == 1);
+    queue.pop_front().pop_front().push_back(5);
+    QVERIFY(queue.front() == 3);
+    queue.pop_front();
+    QVERIFY(queue.front() == 5);
+    QVERIFY(queue.get_size() == 1);
 }

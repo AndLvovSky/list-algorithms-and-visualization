@@ -45,14 +45,14 @@ DoublyLinkedList<T>::find(const T& value) const {
 }
 
 template <typename T>
-void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
+DoublyLinkedList<T>& DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
     if (it == begin()) {
         push_front(value);
-        return;
+        return *this;
     }
     if (it == end()) {
         push_back(value);
-        return;
+        return *this;
     }
     if (is_safe()) {
         check_iterator(it);
@@ -62,30 +62,32 @@ void DoublyLinkedList<T>::insert(const iterator& it, const T& value) {
     node->prev->next = new_node;
     node->prev = new_node;
     inc_size();
+    return *this;
 }
 
 template <typename T>
-void DoublyLinkedList<T>::erase(const iterator& it) {
+DoublyLinkedList<T>& DoublyLinkedList<T>::erase(const iterator& it) {
     if (is_safe()) {
         check_not_empty();
         check_iterator(it);
     }
     if (it == begin()) {
         pop_front();
-        return;
+        return *this;
     }
     if (*it == back()) {
         pop_back();
-        return;
+        return *this;
     }
     auto node = it.current;
     node->prev->next = node->next;
     node->next->prev = node->prev;
     dec_size();
+    return *this;
 }
 
 template <typename T>
-void DoublyLinkedList<T>::push_front(const T& value) {
+DoublyLinkedList<T>& DoublyLinkedList<T>::push_front(const T& value) {
     if (is_empty()) {
         head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
@@ -94,10 +96,11 @@ void DoublyLinkedList<T>::push_front(const T& value) {
         head = new_head;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
-void DoublyLinkedList<T>::push_back(const T& value) {
+DoublyLinkedList<T>& DoublyLinkedList<T>::push_back(const T& value) {
     if (is_empty()) {
         head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
@@ -106,6 +109,7 @@ void DoublyLinkedList<T>::push_back(const T& value) {
         tail = new_tail;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
@@ -125,7 +129,7 @@ T& DoublyLinkedList<T>::back() const {
 }
 
 template <typename T>
-void DoublyLinkedList<T>::pop_front() {
+DoublyLinkedList<T>& DoublyLinkedList<T>::pop_front() {
     if (is_safe()) {
         check_not_empty();
     }
@@ -136,10 +140,11 @@ void DoublyLinkedList<T>::pop_front() {
         head->prev = nullptr;
     }
     dec_size();
+    return *this;
 }
 
 template <typename T>
-void DoublyLinkedList<T>::pop_back() {
+DoublyLinkedList<T>& DoublyLinkedList<T>::pop_back() {
     if (is_safe()) {
         check_not_empty();
     }
@@ -150,6 +155,7 @@ void DoublyLinkedList<T>::pop_back() {
         tail->next = nullptr;
     }
     dec_size();
+    return *this;
 }
 
 template <typename T>

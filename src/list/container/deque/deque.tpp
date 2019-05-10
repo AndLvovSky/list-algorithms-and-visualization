@@ -9,7 +9,7 @@ template <typename T>
 Deque<T>::~Deque() {}
 
 template <typename T>
-void Deque<T>::push_front(const T& value) {
+Deque<T>& Deque<T>::push_front(const T& value) {
     if (is_empty()) {
         head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
@@ -18,10 +18,11 @@ void Deque<T>::push_front(const T& value) {
         head = new_head;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
-void Deque<T>::push_back(const T& value) {
+Deque<T>& Deque<T>::push_back(const T& value) {
     if (is_empty()) {
         head = tail = std::make_shared<Node>(value, nullptr, nullptr);
     } else {
@@ -30,6 +31,7 @@ void Deque<T>::push_back(const T& value) {
         tail = new_tail;
     }
     inc_size();
+    return *this;
 }
 
 template <typename T>
@@ -49,7 +51,7 @@ T& Deque<T>::back() const {
 }
 
 template <typename T>
-void Deque<T>::pop_front() {
+Deque<T>& Deque<T>::pop_front() {
     if (is_safe()) {
         check_not_empty();
     }
@@ -60,10 +62,11 @@ void Deque<T>::pop_front() {
         head->prev = nullptr;
     }
     dec_size();
+    return *this;
 }
 
 template <typename T>
-void Deque<T>::pop_back() {
+Deque<T>& Deque<T>::pop_back() {
     if (is_safe()) {
         check_not_empty();
     }
@@ -74,6 +77,7 @@ void Deque<T>::pop_back() {
         tail->next = nullptr;
     }
     dec_size();
+    return *this;
 }
 
 template class Deque<int>;

@@ -27,6 +27,8 @@ private slots:
 
     void test_exceptions();
 
+    void test_chaining();
+
 };
 
 #endif // TEST_DOUBLY_LINKED_LIST_H

@@ -10,8 +10,9 @@ struct FrontPopable {
 
     /**
      * Delete the first element.
+     * @return *this.
      */
-    virtual void pop_front() = 0;
+    virtual FrontPopable& pop_front() = 0;
 
     /**
      * @return First element.

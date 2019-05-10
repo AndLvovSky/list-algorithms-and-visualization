@@ -79,15 +79,15 @@ public:
 
     iterator find(const T& value) const override;
 
-    void insert(const iterator& it, const T& value) override;
+    ArrayList& insert(const iterator& it, const T& value) override;
 
-    void erase(const iterator& it) override;
+    ArrayList& erase(const iterator& it) override;
 
-    void push_back(const T& value) override;
+    ArrayList& push_back(const T& value) override;
 
     T& back() const override;
 
-    void pop_back() override;
+    ArrayList& pop_back() override;
 
     T& operator [] (int pos) const override;
 

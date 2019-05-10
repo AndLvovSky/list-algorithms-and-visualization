@@ -41,11 +41,11 @@ public:
      */
     virtual ~Stack() override;
 
-    void push_back(const T& value) override;
+    Stack& push_back(const T& value) override;
 
     T& back() const override;
 
-    void pop_back() override;
+    Stack& pop_back() override;
 
 };
 

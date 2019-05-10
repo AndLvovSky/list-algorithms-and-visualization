@@ -23,13 +23,13 @@ struct IterableList : Iterable<ValueType, IteratorType> {
      * @param it - iterator where to insert the value.
      * @param value - value to insert.
      */
-    virtual void insert(const IteratorType& it, const ValueType& value) = 0;
+    virtual IterableList& insert(const IteratorType& it, const ValueType& value) = 0;
 
     /**
      * Erases element pointed to by specified iterator.
      * @param it - iterator where to erase the element.
      */
-    virtual void erase(const IteratorType& it) = 0;
+    virtual IterableList& erase(const IteratorType& it) = 0;
 
 };
 

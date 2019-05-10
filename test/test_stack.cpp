@@ -38,4 +38,21 @@ void TestStack::test_exceptions() {
     try { stack.back(); }
     catch (...) { flag = true; }
     QVERIFY(flag);
+    flag = false;
+    try { stack.push_back(1).pop_back().pop_back().push_back(2); }
+    catch (...) { flag = true; }
+    QVERIFY(flag);
+    QVERIFY(stack.get_size() == 0);
+}
+
+void TestStack::test_chaining() {
+    Stack<int> stack;
+    stack.push_back(1).push_back(2).push_back(3);
+    QVERIFY(stack.get_size() == 3);
+    QVERIFY(stack.back() == 3);
+    stack.pop_back().pop_back().push_back(5);
+    QVERIFY(stack.back() == 5);
+    stack.pop_back();
+    QVERIFY(stack.back() == 1);
+    QVERIFY(stack.get_size() == 1);
 }
