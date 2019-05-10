@@ -21,6 +21,8 @@ struct Algorithm {
     /** Type of container iterator. */
     typedef typename ContainerType<ValueType>::iterator IteratorType;
 
+    Algorithm() = delete;
+
     template <typename ForwardIteratorType = IteratorType>
     /**
      * @brief Calls specified function for specified elements.
