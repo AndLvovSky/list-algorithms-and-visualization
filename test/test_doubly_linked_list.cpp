@@ -90,7 +90,7 @@ void TestDoublyLinkedList::test_exceptions() {
     DoublyLinkedList<int> list;
     list.set_safety(true);
     list.push_back(1);
-    list.pop_back();
+    list.clear();
     bool flag;
     flag = false;
     try { list.pop_back(); }
@@ -130,8 +130,7 @@ void TestDoublyLinkedList::test_exceptions() {
     catch (...) { flag = true; }
     QVERIFY(flag);
 
-    list = DoublyLinkedList<int>();
-    list.set_safety(true);
+    list.clear();
     flag = false;
     try { list.push_back(1).push_front(2)
         .pop_back().pop_front().pop_back(); }

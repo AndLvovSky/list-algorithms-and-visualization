@@ -38,4 +38,10 @@ T& Stack<T>::back() const {
     return tail->value();
 }
 
+template <typename T>
+void Stack<T>::clear() {
+    tail = nullptr;
+    Container::clear();
+}
+
 template class Stack<int>;

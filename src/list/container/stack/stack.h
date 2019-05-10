@@ -47,6 +47,8 @@ public:
 
     Stack& pop_back() override;
 
+    void clear() override;
+
 };
 
 #include "stack.tpp"

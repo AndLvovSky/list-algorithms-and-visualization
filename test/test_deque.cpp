@@ -31,7 +31,7 @@ void TestDeque::test_exceptions() {
     Deque<int> deque;
     deque.set_safety(true);
     deque.push_back(1);
-    deque.pop_back();
+    deque.clear();
     bool flag;
     flag = false;
     try { deque.pop_back(); }

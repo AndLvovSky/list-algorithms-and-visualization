@@ -39,4 +39,10 @@ T& Queue<T>::front() const {
     return head->value();
 }
 
+template <typename T>
+void Queue<T>::clear() {
+    head = tail = nullptr;
+    Container::clear();
+}
+
 template class Queue<int>;

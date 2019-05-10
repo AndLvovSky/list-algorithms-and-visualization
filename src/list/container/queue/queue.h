@@ -49,6 +49,8 @@ public:
 
     Queue& push_back(const T& value) override;
 
+    void clear() override;
+
 };
 
 #include "queue.tpp"

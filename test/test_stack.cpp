@@ -28,7 +28,7 @@ void TestStack::test_exceptions() {
     Stack<int> stack;
     stack.set_safety(true);
     stack.push_back(1);
-    stack.pop_back();
+    stack.clear();
     bool flag;
     flag = false;
     try { stack.pop_back(); }

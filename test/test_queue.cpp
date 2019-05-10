@@ -28,7 +28,7 @@ void TestQueue::test_exceptions() {
     Queue<int> queue;
     queue.set_safety(true);
     queue.push_back(1);
-    queue.pop_front();
+    queue.clear();
     bool flag;
     flag = false;
     try { queue.pop_front(); }

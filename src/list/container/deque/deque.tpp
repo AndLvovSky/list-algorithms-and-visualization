@@ -80,4 +80,10 @@ Deque<T>& Deque<T>::pop_back() {
     return *this;
 }
 
+template <typename T>
+void Deque<T>::clear() {
+    head = tail = nullptr;
+    Container::clear();
+}
+
 template class Deque<int>;

@@ -93,6 +93,8 @@ public:
 
     DoublyLinkedList& pop_back() override;
 
+    void clear() override;
+
 };
 
 #include "doubly_linked_list.tpp"

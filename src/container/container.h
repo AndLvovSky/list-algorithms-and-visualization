@@ -81,6 +81,11 @@ public:
      */
     virtual bool is_safe() const;
 
+    /**
+     * Clears container.
+     */
+    virtual void clear();
+
 };
 
 #endif // CONTAINER_H

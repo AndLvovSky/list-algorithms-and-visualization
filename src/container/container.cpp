@@ -44,3 +44,7 @@ void Container::check_not_empty() const {
         throw ContainerException("Container is empty!");
     }
 }
+
+void Container::clear() {
+    this->size = 0;
+}

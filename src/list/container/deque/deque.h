@@ -59,6 +59,8 @@ public:
 
     T& back() const override;
 
+    void clear() override;
+
 };
 
 #include "deque.tpp"

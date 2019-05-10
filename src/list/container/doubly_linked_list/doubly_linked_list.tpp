@@ -172,4 +172,10 @@ void DoublyLinkedList<T>::check_iterator(const iterator& it) {
     }
 }
 
+template <typename T>
+void DoublyLinkedList<T>::clear() {
+    head = tail = nullptr;
+    Container::clear();
+}
+
 template class  DoublyLinkedList<int>;

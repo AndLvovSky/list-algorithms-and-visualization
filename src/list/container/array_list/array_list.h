@@ -109,6 +109,8 @@ public:
 
     bool operator != (const ArrayList& other) const;
 
+    void clear() override;
+
 };
 
 #include "array_list.tpp"

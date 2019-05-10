@@ -183,4 +183,9 @@ void ArrayList<T>::check_size(int size) const {
     }
 }
 
+template <typename T>
+void ArrayList<T>::clear() {
+    resize(0);
+}
+
 template class ArrayList<int>;

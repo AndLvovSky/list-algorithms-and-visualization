@@ -109,7 +109,7 @@ void TestArrayList::test_equality_operator() {
 void TestArrayList::test_exceptions() {
     ArrayList<int> list = {1};
     list.set_safety(true);
-    list.pop_back();
+    list.clear();
     bool flag;
     flag = false;
     try { list.pop_back(); }
@@ -142,7 +142,7 @@ void TestArrayList::test_exceptions() {
     catch (...) { flag = true; }
     QVERIFY(flag);
 
-    list.resize(0);
+    list.clear();
     flag = false;
     try { list.resize(-5); }
     catch (...) { flag = true; }
@@ -152,8 +152,6 @@ void TestArrayList::test_exceptions() {
     catch (...) { flag = true; }
     QVERIFY(flag);
 
-    list = {};
-    list.set_safety(true);
     flag = false;
     try { list.push_back(1).pop_back().pop_back().push_back(2); }
     catch (...) { flag = true; }
