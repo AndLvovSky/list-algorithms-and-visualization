@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     AppContext::guiBlocker = new GuiBlocker(ui);
 
     listDecorator = new ListDecorator();
+    // test
 }
 
 MainWindow::~MainWindow()
