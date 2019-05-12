@@ -12,9 +12,11 @@ class Arrow
 private:
     shared_ptr<Point> p1, p2;
     QGraphicsLineItem *main, *side1, *side2;
+    shared_ptr<QPen> pen;
 
 public:
     Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2);
+    Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2, shared_ptr<QPen> pen);
 
     void hide();
 

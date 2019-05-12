@@ -125,21 +125,31 @@ void ListItem::connectToBelowItem(int thisIndex, ListItem::Position thisPosition
     }
 }
 
+Arrow *ListItem::drawArrowOver(int index, Arrow *arrow)
+{
+    arrow->change(make_shared<Point>(50 + offset(index), -20),
+                              make_shared<Point>(50 + offset(index), 40));
+    return arrow;
+}
+
 void ListItem::drawValueText(int index, int verticalOffset)
 {
-    valueText = scene->addText(QString::number(value), QFont("Arial", 20));
-    valueText->setPos(50 + offset(index) - QString::number(value).size() * 8, 75 + verticalOffset);
+    valueText = scene->addText(QString::number(value), QFont("Arial", 30));
+    valueText->setPos(50 + offset(index) - QString::number(value).size() * 14, 70 + verticalOffset);
 }
 
 void ListItem::drawIndexText(int index)
 {
-    indexText = scene->addText(QString::number(index), QFont("Arial", 10));
-    indexText->setPos(50 + offset(index) - QString::number(index).size() * 4, 30);
+    indexText = scene->addText(QString::number(index), QFont("Arial", 20));
+    indexText->setPos(50 + offset(index) - QString::number(index).size() * 11, 150);
 }
 
 void ListItem::drawRectangle(int index, int verticalOffset)
 {
-    rectangle = scene->addRect(0 + offset(index), 50 + verticalOffset, 100, 100);
+    QPen pen;
+    pen.setColor(Qt::blue);
+    pen.setWidth(4);
+    rectangle = scene->addRect(0 + offset(index), 50 + verticalOffset, 100, 100, pen);
 }
 
 int ListItem::offset(int index)

@@ -26,6 +26,17 @@ void ListDecorator::push_back(int value)
     QTimer::singleShot(900, [=](){ lastItem->drawRightArrow(lastIndex); });
 }
 
+void ListDecorator::shiftAllAfter(int position)
+{
+    int counter = 0;
+    for (shared_ptr<ListItem> item: list){
+        if (counter > position) {
+            item->moveRightByOne();
+        }
+        counter++;
+    }
+}
+
 void ListDecorator::insert(int value, int position)
 {
     if (position < 0 || position >= list.get_size()) {
@@ -39,35 +50,29 @@ void ListDecorator::insert(int value, int position)
         updateSceneSize();
         shared_ptr<ListItem> insertItem = getIthValue(position);
 
-        // shift all items after current to the right
-        int counter = 0;
-        for (shared_ptr<ListItem> item: list){
-            if (counter > position) {
-                item->moveRightByOne();
-            }
-            counter++;
-        }
-
         if (position > 0 && position + 1 < list.get_size()) {
-            blockGui(2200);
-            connectTwoListItems(position - 1, position + 1);
-            QTimer::singleShot(300, [=](){ insertItem->drawBodyUnderList(position); });
-            QTimer::singleShot(600, [=](){ getIthValue(position - 1)->connectToBelowItem(position, insertItem->LEFT); });
-            QTimer::singleShot(900, [=](){ getIthValue(position + 1)->connectToBelowItem(position, insertItem->RIGHT); });
-            QTimer::singleShot(1200, [=](){
+            blockGui(2400 + 300 * position);
+            iterateOverTo(position);
+            QTimer::singleShot(300 * position, [=](){ shiftAllAfter(position); });
+            QTimer::singleShot(300 + 300 * position, [=](){ connectTwoListItems(position - 1, position + 1); });
+            QTimer::singleShot(600 + 300 * position, [=](){ insertItem->drawBodyUnderList(position); });
+            QTimer::singleShot(900 + 300 * position, [=](){ getIthValue(position - 1)->connectToBelowItem(position, insertItem->LEFT); });
+            QTimer::singleShot(1200 + 300 * position, [=](){ getIthValue(position + 1)->connectToBelowItem(position, insertItem->RIGHT); });
+            QTimer::singleShot(1500 + 300 * position, [=](){
                 insertItem->moveBodyToTop();
                 getIthValue(position - 1)->connectToListItem(position - 1, position, insertItem->LEFT);
                 getIthValue(position + 1)->connectToListItem(position +1, position, insertItem->RIGHT);
             });
-            QTimer::singleShot(1500, [=](){ insertItem->connectToLeftItem(position); });
-            QTimer::singleShot(1800, [=](){ insertItem->connectToRightItem(position); });
-            QTimer::singleShot(2100, [=](){ drawList(); });
+            QTimer::singleShot(1800 + 300 * position, [=](){ insertItem->connectToLeftItem(position); });
+            QTimer::singleShot(2100 + 300 * position, [=](){ insertItem->connectToRightItem(position); });
+            QTimer::singleShot(2400 + 300 * position, [=](){ drawList(); });
         } else { // position = 0
-            blockGui(1300);
-            QTimer::singleShot(300, [=](){ insertItem->drawBody(position); });
-            QTimer::singleShot(600, [=](){ insertItem->connectToLeftItem(position); });
-            QTimer::singleShot(900, [=](){ insertItem->connectToRightItem(position); });
-            QTimer::singleShot(1200, [=](){ drawList(); });
+            blockGui(1300 + 300 * position);
+            QTimer::singleShot(300 * position, [=](){ shiftAllAfter(position); });
+            QTimer::singleShot(300 + 300 * position, [=](){ insertItem->drawBody(position); });
+            QTimer::singleShot(600 + 300 * position, [=](){ insertItem->connectToLeftItem(position); });
+            QTimer::singleShot(900 + 300 * position, [=](){ insertItem->connectToRightItem(position); });
+            QTimer::singleShot(1200 + 300 * position, [=](){ drawList(); });
         }
     }
 }
@@ -81,14 +86,15 @@ void ListDecorator::erase(int position)
         memento.insert(memento.begin() + currentMementoIndex, copy(list));
 
         //Drawing
-        eraseItem->hide();
         if (position > 0 && position < list.get_size()) {
-            blockGui(1000);
+            blockGui(1200 + 300*position);
+            iterateOverTo(position);
+            QTimer::singleShot(300 * position, [=](){ eraseItem->hide(); });
             shared_ptr<ListItem> prevItem = getIthValue(position - 1);
             shared_ptr<ListItem> nextItem = getIthValue(position);
-            QTimer::singleShot(300, [=](){ prevItem->connectToListItem(position - 1, position + 1, prevItem->LEFT); });
-            QTimer::singleShot(600, [=](){ nextItem->connectToListItem(position + 2, position, prevItem->RIGHT); });
-            QTimer::singleShot(900, [=](){ drawList(); });
+            QTimer::singleShot(600 + 300 * position, [=](){ prevItem->connectToListItem(position - 1, position + 1, prevItem->LEFT); });
+            QTimer::singleShot(900 + 300 * position, [=](){ nextItem->connectToListItem(position + 2, position, prevItem->RIGHT); });
+            QTimer::singleShot(1200 + 300 * position, [=](){ drawList(); });
         } else{
             blockGui(300);
             QTimer::singleShot(300, [=](){ drawList(); });
@@ -174,6 +180,26 @@ void ListDecorator::blockGui(int ms)
 {
     AppContext::guiBlocker->disableAll();
     QTimer::singleShot(ms, [=](){ AppContext::guiBlocker->enableAll(); });
+}
+
+void ListDecorator::iterateOverTo(int index)
+{
+    if (index == 0) return;
+    shared_ptr<QPen> arrowPen = make_shared<QPen>();
+    arrowPen->setWidth(4);
+    arrowPen->setColor(Qt::red);
+    Arrow * arrow = new Arrow(make_shared<Point>(0,0), make_shared<Point>(100, 100), arrowPen);
+    qInfo() << "Before list.begin()";
+    DoublyLinkedList<shared_ptr<ListItem>>::iterator it = list.begin();
+    qInfo() << "After list.begin()";
+    qInfo() << "Index: " << index;
+    for (int i = 0; i < index; i++) {
+        qInfo() << "i = " << i;
+        ++it;
+        qInfo() << "after ++it;";
+        QTimer::singleShot(300 * i, [=](){ (*it)->drawArrowOver(i, arrow); });
+    }
+    QTimer::singleShot(300 * index, [=](){ arrow->hide(); });
 }
 
 DoublyLinkedList<shared_ptr<ListItem>> ListDecorator::copy(DoublyLinkedList<shared_ptr<ListItem>> list)

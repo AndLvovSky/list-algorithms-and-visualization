@@ -7,8 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QMainWindow::showFullScreen();
-    resizeElements(QMainWindow::width(), QMainWindow::height());
 
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
@@ -16,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     AppContext::guiBlocker = new GuiBlocker(ui);
 
     listDecorator = new ListDecorator();
-    // test
 }
 
 MainWindow::~MainWindow()

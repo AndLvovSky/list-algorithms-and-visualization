@@ -46,6 +46,7 @@ public:
     void connectToLeftItem(int index);
     void connectToRightItem(int index);
     void connectToBelowItem(int thisIndex, Position thisPosition);
+    Arrow* drawArrowOver(int index, Arrow* arrow);
 
 private:
     void drawValueText(int index, int verticalOffset);

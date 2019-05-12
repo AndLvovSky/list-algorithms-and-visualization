@@ -7,11 +7,9 @@ Arrow::Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2) : Arrow(p1, p2, nullptr
 {
 }
 
-Arrow::Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2, shared_ptr<QPen> pen): p1(p1), p2(p2), pen(pen)
+Arrow::Arrow(shared_ptr<Point> p1, shared_ptr<Point> p2, shared_ptr<QPen> pen)
+    : p1(p1), p2(p2), pen(pen)
 {
-    main = nullptr;
-    side1 = nullptr;
-    side2 = nullptr;
 }
 
 void Arrow::hide()
@@ -24,10 +22,9 @@ void Arrow::hide()
 void Arrow::draw()
 {
     QPen localPen;
-    if (!pen) {
-        localPen.setWidth(4);
-    } else {
-        localPen = *pen.get();
+    localPen.setWidth(4);
+    if (pen != nullptr) {
+        localPen.setColor(pen.color());
     }
 
     QGraphicsScene* scene = AppContext::scene;

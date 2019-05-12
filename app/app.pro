@@ -33,7 +33,8 @@ SOURCES += \
     listitem.cpp \
     arrow.cpp \
     appcontext.cpp \
-    guiblocker.cpp
+    guiblocker.cpp \
+    resizefilter.cpp
 
 HEADERS += \
         main_window.h \
@@ -42,7 +43,8 @@ HEADERS += \
     arrow.h \
     point.h \
     appcontext.h \
-    guiblocker.h
+    guiblocker.h \
+    resizefilter.h
 
 FORMS += \
         main_window.ui

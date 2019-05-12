@@ -21,6 +21,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void resizeElements(int width, int height);
+
 private slots:
     void on_pushBackButton_clicked();
 
@@ -40,9 +42,6 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene * scene;
     ListDecorator *listDecorator;
-
-private:
-    void resizeElements(int width, int height);
 };
 
 #endif // MAIN_WINDOW_H

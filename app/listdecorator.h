@@ -35,6 +35,8 @@ private:
     shared_ptr<ListItem> getIthValue(int i);
     void connectTwoListItems(int index1, int index2);
     void blockGui(int ms);
+    void iterateOverTo(int index);
+    void shiftAllAfter(int position);
 };
 
 #endif // LISTDECORATOR_H
