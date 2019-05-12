@@ -11,6 +11,7 @@ class AppContext
 public:
     static QGraphicsScene * scene;
     static GuiBlocker * guiBlocker;
+    static QGraphicsView * view;
 
 private:
     AppContext(){}

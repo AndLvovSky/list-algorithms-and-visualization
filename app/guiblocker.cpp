@@ -8,6 +8,7 @@ void GuiBlocker::disableAll()
     ui->eraseButton->setDisabled(true);
     ui->redoButton->setDisabled(true);
     ui->undoButton->setDisabled(true);
+    ui->graphicsView->horizontalScrollBar()->setEnabled(false);
 }
 
 void GuiBlocker::enableAll()
@@ -18,4 +19,5 @@ void GuiBlocker::enableAll()
     ui->eraseButton->setEnabled(true);
     ui->redoButton->setEnabled(true);
     ui->undoButton->setEnabled(true);
+    ui->graphicsView->horizontalScrollBar()->setEnabled(true);
 }

@@ -10,6 +10,12 @@
     <height>805</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1300</width>
+    <height>700</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>List visualization</string>
   </property>
@@ -24,6 +30,11 @@
 	width: 100px;
 	height: 40px;
 }
+
+QPushButton:disabled{
+	background-color: 	#02645c;
+}
+
 
 QPushButton:hover{
 	background-color: #02665e;
@@ -60,6 +71,9 @@ QLabel{
       <width>1000</width>
       <height>200</height>
      </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="pushBackButton">
@@ -197,24 +211,7 @@ QLabel{
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: 	#03958A;
-	color: #ffffff;
-	text-transform:uppercase;
-	border: none;
-	outline:none;
-	font-size: 30px;
-	width: 100px;
-	height: 40px;
-}
-
-QPushButton:hover{
-	background-color: #02665e;
-}
-
-QPushButton:pressed{
-	background-color: #00423c;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Erase</string>
@@ -259,24 +256,7 @@ QPushButton:pressed{
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: 	#03958A;
-	color: #ffffff;
-	text-transform:uppercase;
-	border: none;
-	outline:none;
-	font-size: 30px;
-	width: 100px;
-	height: 40px;
-}
-
-QPushButton:hover{
-	background-color: #02665e;
-}
-
-QPushButton:pressed{
-	background-color: #00423c;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Undo</string>
@@ -323,7 +303,7 @@ background-color:#8b0000;
      <x>0</x>
      <y>0</y>
      <width>1584</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

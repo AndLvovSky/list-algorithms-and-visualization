@@ -19,6 +19,7 @@ void ListDecorator::push_back(int value)
     //Drawing
     blockGui(1000);
     updateSceneSize();
+    AppContext::view->horizontalScrollBar()->setValue(1000000);
     int lastIndex = list.get_size() - 1;
     shared_ptr<ListItem> lastItem = getIthValue(lastIndex);
     QTimer::singleShot(300, [=](){ lastItem->drawBody(lastIndex); });
@@ -189,14 +190,9 @@ void ListDecorator::iterateOverTo(int index)
     arrowPen->setWidth(4);
     arrowPen->setColor(Qt::red);
     Arrow * arrow = new Arrow(make_shared<Point>(0,0), make_shared<Point>(100, 100), arrowPen);
-    qInfo() << "Before list.begin()";
     DoublyLinkedList<shared_ptr<ListItem>>::iterator it = list.begin();
-    qInfo() << "After list.begin()";
-    qInfo() << "Index: " << index;
     for (int i = 0; i < index; i++) {
-        qInfo() << "i = " << i;
         ++it;
-        qInfo() << "after ++it;";
         QTimer::singleShot(300 * i, [=](){ (*it)->drawArrowOver(i, arrow); });
     }
     QTimer::singleShot(300 * index, [=](){ arrow->hide(); });

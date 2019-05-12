@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     AppContext::scene = scene;
     AppContext::guiBlocker = new GuiBlocker(ui);
+    AppContext::view = ui->graphicsView;
 
     listDecorator = new ListDecorator();
 }
