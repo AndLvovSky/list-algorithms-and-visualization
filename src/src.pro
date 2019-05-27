@@ -9,6 +9,7 @@ QT       -= gui
 TARGET = listlib
 
 TEMPLATE = lib
+CONFIG += staticlib
 
 SOURCES += \
     list/node/bidirectional_node.tpp \
